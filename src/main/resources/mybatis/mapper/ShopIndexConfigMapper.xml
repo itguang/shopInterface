@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yearcon.shop.mapper.ShopIndexConfigMapper">
+    
+	<sql id="shopIndexConfigColumns">
+		a.id AS "id",
+		a.picture_url AS "pictureUrl",
+		a.linkto AS "linkto",
+		a.type AS "type",
+		a.sort AS "sort",
+		a.name AS "name",
+		a.icon_url AS "iconUrl",
+		a.is_icon AS "isIcon"
+	</sql>
+	
+	<sql id="shopIndexConfigJoins">
+	</sql>
+	
+    <select id="getByType" resultType="ShopIndexConfig">
+		select picture_url,linkto,`name`,sort from shop_index_config where type=#{type} ORDER BY sort;
+
+	</select>
+	<select id="getIndexImage" resultType="ShopIndexConfig">
+		SELECT
+			id,
+			picture_url,
+			linkto,
+			type,
+			sort,
+			NAME,
+			icon_url,
+			is_icon
+		FROM
+			shop_index_config
+		ORDER BY
+			type,
+			sort;
+
+	</select>
+
+
+	<select id="get" resultType="ShopIndexConfig" >
+		SELECT 
+			<include refid="shopIndexConfigColumns"/>
+		FROM shop_index_config a
+		<include refid="shopIndexConfigJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ShopIndexConfig" >
+		SELECT 
+			<include refid="shopIndexConfigColumns"/>
+		FROM shop_index_config a
+		<include refid="shopIndexConfigJoins"/>
+		<where>
+			
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
+			<if test="isIcon != null and isIcon != ''">
+				AND a.is_icon = #{isIcon}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ShopIndexConfig" >
+		SELECT 
+			<include refid="shopIndexConfigColumns"/>
+		FROM shop_index_config a
+		<include refid="shopIndexConfigJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO shop_index_config(
+			id,
+			picture_url,
+			linkto,
+			type,
+			sort,
+			name,
+			icon_url,
+			is_icon
+		) VALUES (
+			#{id},
+			#{pictureUrl},
+			#{linkto},
+			#{type},
+			#{sort},
+			#{name},
+			#{iconUrl},
+			#{isIcon}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE shop_index_config SET 	
+			picture_url = #{pictureUrl},
+			linkto = #{linkto},
+			type = #{type},
+			sort = #{sort},
+			name = #{name},
+			icon_url = #{iconUrl},
+			is_icon = #{isIcon}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM shop_index_config
+		WHERE id = #{id}
+	</update>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE shop_index_config SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+	<select id="findUniqueByProperty" resultType="ShopIndexConfig" statementType="STATEMENT">
+		select * FROM shop_index_config  where ${propertyName} = '${value}'
+	</select>
+	
+</mapper>
