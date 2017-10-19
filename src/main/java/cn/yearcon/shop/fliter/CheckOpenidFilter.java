@@ -28,7 +28,7 @@ public class CheckOpenidFilter implements Filter {
     }
 
     /**
-     * 进行openid检查
+     * 进行openid检查,
      *
      * @param servletRequest
      * @param servletResponse
@@ -70,13 +70,18 @@ public class CheckOpenidFilter implements Filter {
             openid = openidSession;
             hasOpenid = true;
         }
-
-        if(hasOpenid){//如果有
-            filterChain.doFilter(servletRequest, servletResponse);//放行
-        }else{//没有
+        System.out.println("hasOpenid="+hasOpenid);
+        //如果有
+        if(hasOpenid){
+            //放行
+            filterChain.doFilter(servletRequest, servletResponse);
+        }else{
             //        没有的话,重定向到微信网页授权登陆页面
-           String loginUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1642c5a5400c82e2&redirect_uri=http://www.yearcontest.com&response_type=code&scope=snsapi_userinfo&#wechat_redirect";
-            response.sendRedirect(loginUrl);
+//           String loginUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1642c5a5400c82e2&redirect_uri=http://www.yearcontest.com&response_type=code&scope=snsapi_userinfo&#wechat_redirect";
+//            response.sendRedirect(loginUrl);
+
+            //开发接口时为了方便,先放行
+            filterChain.doFilter(servletRequest, servletResponse);
 
         }
 
