@@ -1,8 +1,7 @@
 package cn.yearcon.shop;
 
-import cn.yearcon.shop.dao.UserRepository;
+import cn.yearcon.shop.dao.repository.UserRepository;
 import cn.yearcon.shop.entity.User;
-import cn.yearcon.shop.mapper.ShopIndexConfigMapper;
 import cn.yearcon.shop.mapper.UserMapper;
 import cn.yearcon.shop.mapper.UserMapperJava;
 import org.junit.Test;

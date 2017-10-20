@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yearcon.shop.mapper.ShopOrderMapper">
+    
+	<sql id="shopOrderColumns">
+		a.id AS "id",
+		a.order_number AS "orderNumber",
+		a.way_cost AS "wayCost",
+		a.waybill_number AS "waybillNumber",
+		a.transaction_no AS "transactionNo",
+		a.remark_seller AS "remarkSeller",
+		a.customer_id AS "customerId",
+		a.product_id AS "productId",
+		a.product_code AS "productCode",
+		a.product_name AS "productName",
+		a.product_simplename AS "productSimplename",
+		a.product_amount AS "productAmount",
+		a.price AS "price",
+		a.sales_attribute AS "salesAttribute",
+		a.consignee AS "consignee",
+		a.consignee_mobile AS "consigneeMobile ",
+		a.consignee_call AS "consigneeCall",
+		a.amount_payable AS "amountPayable",
+		a.amount_paid AS "amountPaid",
+		a.invoice_title AS "invoiceTitle",
+		a.invoice_request AS "invoiceRequest",
+		a.delivery_type AS "deliveryType",
+		a.pay_status AS "payStatus",
+		a.remark_buyer AS "remarkBuyer",
+		a.add_time AS "addTime",
+		a.pay_time AS "payTime",
+		a.province AS "province",
+		a.city AS "city",
+		a.area AS "area",
+		a.shopping_address_id AS "shoppingAddressId",
+		a.consignee_code AS "consigneeCode",
+		a.delivery_status AS "deliveryStatus"
+	</sql>
+	
+	<sql id="shopOrderJoins">
+	</sql>
+	
+    
+	<select id="get" resultType="ShopOrder" >
+		SELECT 
+			<include refid="shopOrderColumns"/>
+		FROM shop_order a
+		<include refid="shopOrderJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ShopOrder" >
+		SELECT 
+			<include refid="shopOrderColumns"/>
+		FROM shop_order a
+		<include refid="shopOrderJoins"/>
+		<where>
+			
+			<if test="orderNumber != null and orderNumber != ''">
+				AND a.order_number = #{orderNumber}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ShopOrder" >
+		SELECT 
+			<include refid="shopOrderColumns"/>
+		FROM shop_order a
+		<include refid="shopOrderJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO shop_order(
+			id,
+			order_number,
+			way_cost,
+			waybill_number,
+			transaction_no,
+			remark_seller,
+			customer_id,
+			product_id,
+			product_code,
+			product_name,
+			product_simplename,
+			product_amount,
+			price,
+			sales_attribute,
+			consignee,
+			consignee_mobile ,
+			consignee_call,
+			amount_payable,
+			amount_paid,
+			invoice_title,
+			invoice_request,
+			delivery_type,
+			pay_status,
+			remark_buyer,
+			add_time,
+			pay_time,
+			province,
+			city,
+			area,
+			shopping_address_id,
+			consignee_code,
+			delivery_status
+		) VALUES (
+			#{id},
+			#{orderNumber},
+			#{wayCost},
+			#{waybillNumber},
+			#{transactionNo},
+			#{remarkSeller},
+			#{customerId},
+			#{productId},
+			#{productCode},
+			#{productName},
+			#{productSimplename},
+			#{productAmount},
+			#{price},
+			#{salesAttribute},
+			#{consignee},
+			#{consigneeMobile },
+			#{consigneeCall},
+			#{amountPayable},
+			#{amountPaid},
+			#{invoiceTitle},
+			#{invoiceRequest},
+			#{deliveryType},
+			#{payStatus},
+			#{remarkBuyer},
+			#{addTime},
+			#{payTime},
+			#{province},
+			#{city},
+			#{area},
+			#{shoppingAddressId},
+			#{consigneeCode},
+			#{deliveryStatus}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE shop_order SET 	
+			order_number = #{orderNumber},
+			way_cost = #{wayCost},
+			waybill_number = #{waybillNumber},
+			transaction_no = #{transactionNo},
+			remark_seller = #{remarkSeller},
+			customer_id = #{customerId},
+			product_id = #{productId},
+			product_code = #{productCode},
+			product_name = #{productName},
+			product_simplename = #{productSimplename},
+			product_amount = #{productAmount},
+			price = #{price},
+			sales_attribute = #{salesAttribute},
+			consignee = #{consignee},
+			consignee_mobile  = #{consigneeMobile },
+			consignee_call = #{consigneeCall},
+			amount_payable = #{amountPayable},
+			amount_paid = #{amountPaid},
+			invoice_title = #{invoiceTitle},
+			invoice_request = #{invoiceRequest},
+			delivery_type = #{deliveryType},
+			pay_status = #{payStatus},
+			remark_buyer = #{remarkBuyer},
+			add_time = #{addTime},
+			pay_time = #{payTime},
+			province = #{province},
+			city = #{city},
+			area = #{area},
+			shopping_address_id = #{shoppingAddressId},
+			consignee_code = #{consigneeCode},
+			delivery_status = #{deliveryStatus}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM shop_order
+		WHERE id = #{id}
+	</update>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE shop_order SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+	<select id="findUniqueByProperty" resultType="ShopOrder" statementType="STATEMENT">
+		select * FROM shop_order  where ${propertyName} = '${value}'
+	</select>
+	
+</mapper>

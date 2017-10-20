@@ -1,4 +1,4 @@
-package cn.yearcon.shop.dao;
+package cn.yearcon.shop.dao.repository;
 
 
 import cn.yearcon.shop.entity.User;

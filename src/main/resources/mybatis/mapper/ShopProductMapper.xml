@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yearcon.shop.mapper.ShopProductMapper">
+    
+	<sql id="shopProductColumns">
+		a.id AS "id",
+		a.product_no AS "productNo",
+		a.brand AS "brand",
+		a.name AS "name",
+		a.market_date AS "marketDate",
+		a.category_id AS "categoryId",
+		a.visits AS "visits",
+		a.product_type AS "productType",
+		a.occasion AS "occasion",
+		a.size AS "size",
+		a.style AS "style",
+		a.function AS "function",
+		a.target AS "target",
+		a.vamp_texture AS "vampTexture",
+		a.low_shoes_name AS "lowShoesName",
+		a.insole_texture AS "insoleTexture",
+		a.sort_no AS "sortNo",
+		a.keyword AS "keyword",
+		a.summary AS "summary",
+		a.stores AS "stores",
+		a.price AS "price",
+		a.points AS "points",
+		a.description AS "description",
+		a.details AS "details",
+		a.sales AS "sales",
+		a.residue AS "residue",
+		a.is_new AS "isNew",
+		a.is_hot AS "isHot",
+		a.is_alive AS "isAlive",
+		a.picture_url_default AS "pictureUrlDefault",
+		a.picture_url2 AS "pictureUrl2",
+		a.picture_url3 AS "pictureUrl3",
+		a.picture_url4 AS "pictureUrl4",
+		a.picture_url5 AS "pictureUrl5",
+		a.picture_url6 AS "pictureUrl6",
+		a.add_time AS "addTime"
+	</sql>
+	
+	<sql id="shopProductJoins">
+	</sql>
+	
+    
+	<select id="get" resultType="ShopProduct" >
+		SELECT 
+			<include refid="shopProductColumns"/>
+		FROM shop_product a
+		<include refid="shopProductJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ShopProduct" >
+		SELECT 
+			<include refid="shopProductColumns"/>
+		FROM shop_product a
+		<include refid="shopProductJoins"/>
+		<where>
+			
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="isNew != null and isNew != ''">
+				AND a.is_new = #{isNew}
+			</if>
+			<if test="isHot != null and isHot != ''">
+				AND a.is_hot = #{isHot}
+			</if>
+			<if test="isAlive != null and isAlive != ''">
+				AND a.is_alive = #{isAlive}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ShopProduct" >
+		SELECT 
+			<include refid="shopProductColumns"/>
+		FROM shop_product a
+		<include refid="shopProductJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO shop_product(
+			id,
+			product_no,
+			brand,
+			name,
+			market_date,
+			category_id,
+			visits,
+			product_type,
+			occasion,
+			size,
+			style,
+			function,
+			target,
+			vamp_texture,
+			low_shoes_name,
+			insole_texture,
+			sort_no,
+			keyword,
+			summary,
+			stores,
+			price,
+			points,
+			description,
+			details,
+			sales,
+			residue,
+			is_new,
+			is_hot,
+			is_alive,
+			picture_url_default,
+			picture_url2,
+			picture_url3,
+			picture_url4,
+			picture_url5,
+			picture_url6,
+			add_time
+		) VALUES (
+			#{id},
+			#{productNo},
+			#{brand},
+			#{name},
+			#{marketDate},
+			#{categoryId},
+			#{visits},
+			#{productType},
+			#{occasion},
+			#{size},
+			#{style},
+			#{function},
+			#{target},
+			#{vampTexture},
+			#{lowShoesName},
+			#{insoleTexture},
+			#{sortNo},
+			#{keyword},
+			#{summary},
+			#{stores},
+			#{price},
+			#{points},
+			#{description},
+			#{details},
+			#{sales},
+			#{residue},
+			#{isNew},
+			#{isHot},
+			#{isAlive},
+			#{pictureUrlDefault},
+			#{pictureUrl2},
+			#{pictureUrl3},
+			#{pictureUrl4},
+			#{pictureUrl5},
+			#{pictureUrl6},
+			#{addTime}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE shop_product SET 	
+			product_no = #{productNo},
+			brand = #{brand},
+			name = #{name},
+			market_date = #{marketDate},
+			category_id = #{categoryId},
+			visits = #{visits},
+			product_type = #{productType},
+			occasion = #{occasion},
+			size = #{size},
+			style = #{style},
+			function = #{function},
+			target = #{target},
+			vamp_texture = #{vampTexture},
+			low_shoes_name = #{lowShoesName},
+			insole_texture = #{insoleTexture},
+			sort_no = #{sortNo},
+			keyword = #{keyword},
+			summary = #{summary},
+			stores = #{stores},
+			price = #{price},
+			points = #{points},
+			description = #{description},
+			details = #{details},
+			sales = #{sales},
+			residue = #{residue},
+			is_new = #{isNew},
+			is_hot = #{isHot},
+			is_alive = #{isAlive},
+			picture_url_default = #{pictureUrlDefault},
+			picture_url2 = #{pictureUrl2},
+			picture_url3 = #{pictureUrl3},
+			picture_url4 = #{pictureUrl4},
+			picture_url5 = #{pictureUrl5},
+			picture_url6 = #{pictureUrl6},
+			add_time = #{addTime}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM shop_product
+		WHERE id = #{id}
+	</update>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE shop_product SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+	<select id="findUniqueByProperty" resultType="ShopProduct" statementType="STATEMENT">
+		select * FROM shop_product  where ${propertyName} = '${value}'
+	</select>
+	
+</mapper>

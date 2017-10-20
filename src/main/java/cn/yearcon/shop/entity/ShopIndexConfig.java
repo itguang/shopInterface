@@ -4,6 +4,8 @@
 package cn.yearcon.shop.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,7 +15,9 @@ import javax.persistence.Id;
  * @author itguang
  * @version 2017-10-19
  */
+
 @Entity
+@JsonIgnoreProperties(value = { "isIcon" })
 public class ShopIndexConfig {
 
     /**

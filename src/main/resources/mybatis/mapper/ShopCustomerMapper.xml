@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yearcon.shop.mapper.ShopCustomerMapper">
+    
+	<sql id="shopCustomerColumns">
+		a.id AS "id",
+		a.openid AS "openid",
+		a.shipping_address_id AS "shippingAddressId"
+	</sql>
+	
+	<sql id="shopCustomerJoins">
+	</sql>
+	
+    
+	<select id="get" resultType="ShopCustomer" >
+		SELECT 
+			<include refid="shopCustomerColumns"/>
+		FROM shop_customer a
+		<include refid="shopCustomerJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ShopCustomer" >
+		SELECT 
+			<include refid="shopCustomerColumns"/>
+		FROM shop_customer a
+		<include refid="shopCustomerJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ShopCustomer" >
+		SELECT 
+			<include refid="shopCustomerColumns"/>
+		FROM shop_customer a
+		<include refid="shopCustomerJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO shop_customer(
+			id,
+			openid,
+			shipping_address_id
+		) VALUES (
+			#{id},
+			#{openid},
+			#{shippingAddressId}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE shop_customer SET 	
+			openid = #{openid},
+			shipping_address_id = #{shippingAddressId}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM shop_customer
+		WHERE id = #{id}
+	</update>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE shop_customer SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+	<select id="findUniqueByProperty" resultType="ShopCustomer" statementType="STATEMENT">
+		select * FROM shop_customer  where ${propertyName} = '${value}'
+	</select>
+	
+</mapper>

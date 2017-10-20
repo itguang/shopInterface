@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yearcon.shop.mapper.ShopConfigMapper">
+    
+	<sql id="shopConfigColumns">
+		a.id AS "id",
+		a.title AS "title",
+		a.appid AS "appid",
+		a.secret AS "secret",
+		a.vip_center_url AS "vipCenterUrl",
+		a.consult_url AS "consultUrl"
+	</sql>
+	
+	<sql id="shopConfigJoins">
+	</sql>
+	
+    
+	<select id="get" resultType="ShopConfig" >
+		SELECT 
+			<include refid="shopConfigColumns"/>
+		FROM shop_config a
+		<include refid="shopConfigJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ShopConfig" >
+		SELECT 
+			<include refid="shopConfigColumns"/>
+		FROM shop_config a
+		<include refid="shopConfigJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ShopConfig" >
+		SELECT 
+			<include refid="shopConfigColumns"/>
+		FROM shop_config a
+		<include refid="shopConfigJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO shop_config(
+			id,
+			title,
+			appid,
+			secret,
+			vip_center_url,
+			consult_url
+		) VALUES (
+			#{id},
+			#{title},
+			#{appid},
+			#{secret},
+			#{vipCenterUrl},
+			#{consultUrl}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE shop_config SET 	
+			title = #{title},
+			appid = #{appid},
+			secret = #{secret},
+			vip_center_url = #{vipCenterUrl},
+			consult_url = #{consultUrl}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM shop_config
+		WHERE id = #{id}
+	</update>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE shop_config SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+	<select id="findUniqueByProperty" resultType="ShopConfig" statementType="STATEMENT">
+		select * FROM shop_config  where ${propertyName} = '${value}'
+	</select>
+	
+</mapper>

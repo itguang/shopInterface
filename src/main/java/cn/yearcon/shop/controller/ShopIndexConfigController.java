@@ -2,6 +2,7 @@ package cn.yearcon.shop.controller;
 
 import cn.yearcon.shop.entity.ShopIndexConfig;
 import cn.yearcon.shop.service.ShopIndexConfigService;
+import cn.yearcon.shop.service.ShopProductService;
 import cn.yearcon.shop.utils.ShopResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +24,13 @@ public class ShopIndexConfigController {
     @Autowired
     private ShopIndexConfigService shopIndexConfigService;
 
+    @Autowired
+    private ShopProductService shopProductService;
 
+    /**
+     * 首页图片接口
+     * @return
+     */
     @RequestMapping(value ="index/image")
     public ShopResult getimage(){
         ShopResult shopResult = null;
@@ -40,6 +47,14 @@ public class ShopIndexConfigController {
         }
 
         return shopResult;
+    }
+
+    public ShopResult getIndexCategoryData(){
+
+
+
+
+        return null;
     }
 
 

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yearcon.shop.mapper.ShopCategoryMapper">
+    
+	<sql id="shopCategoryColumns">
+		a.id AS "id",
+		a.category_name AS "categoryName",
+		a.category_picture_url AS "categoryPictureUrl"
+	</sql>
+	
+	<sql id="shopCategoryJoins">
+	</sql>
+	
+    
+	<select id="get" resultType="ShopCategory" >
+		SELECT 
+			<include refid="shopCategoryColumns"/>
+		FROM shop_category a
+		<include refid="shopCategoryJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ShopCategory" >
+		SELECT 
+			<include refid="shopCategoryColumns"/>
+		FROM shop_category a
+		<include refid="shopCategoryJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ShopCategory" >
+		SELECT 
+			<include refid="shopCategoryColumns"/>
+		FROM shop_category a
+		<include refid="shopCategoryJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO shop_category(
+			id,
+			category_name,
+			category_picture_url
+		) VALUES (
+			#{id},
+			#{categoryName},
+			#{categoryPictureUrl}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE shop_category SET 	
+			category_name = #{categoryName},
+			category_picture_url = #{categoryPictureUrl}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM shop_category
+		WHERE id = #{id}
+	</update>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE shop_category SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+	<select id="findUniqueByProperty" resultType="ShopCategory" statementType="STATEMENT">
+		select * FROM shop_category  where ${propertyName} = '${value}'
+	</select>
+	
+</mapper>

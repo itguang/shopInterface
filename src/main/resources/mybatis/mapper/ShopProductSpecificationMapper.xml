@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yearcon.shop.mapper.ShopProductSpecificationMapper">
+    
+	<sql id="shopProductSpecificationColumns">
+		a.id AS "id",
+		a.product_id AS "productId",
+		a.name AS "name",
+		a.inventory AS "inventory",
+		a.need_integration AS "needIntegration",
+		a.color AS "color"
+	</sql>
+	
+	<sql id="shopProductSpecificationJoins">
+	</sql>
+	
+    
+	<select id="get" resultType="ShopProductSpecification" >
+		SELECT 
+			<include refid="shopProductSpecificationColumns"/>
+		FROM shop_product_specification a
+		<include refid="shopProductSpecificationJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ShopProductSpecification" >
+		SELECT 
+			<include refid="shopProductSpecificationColumns"/>
+		FROM shop_product_specification a
+		<include refid="shopProductSpecificationJoins"/>
+		<where>
+			
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ShopProductSpecification" >
+		SELECT 
+			<include refid="shopProductSpecificationColumns"/>
+		FROM shop_product_specification a
+		<include refid="shopProductSpecificationJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO shop_product_specification(
+			id,
+			product_id,
+			name,
+			inventory,
+			need_integration,
+			color
+		) VALUES (
+			#{id},
+			#{productId},
+			#{name},
+			#{inventory},
+			#{needIntegration},
+			#{color}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE shop_product_specification SET 	
+			product_id = #{productId},
+			name = #{name},
+			inventory = #{inventory},
+			need_integration = #{needIntegration},
+			color = #{color}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM shop_product_specification
+		WHERE id = #{id}
+	</update>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE shop_product_specification SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+	<select id="findUniqueByProperty" resultType="ShopProductSpecification" statementType="STATEMENT">
+		select * FROM shop_product_specification  where ${propertyName} = '${value}'
+	</select>
+	
+</mapper>

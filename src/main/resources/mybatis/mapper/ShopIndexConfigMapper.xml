@@ -22,16 +22,10 @@
 	</select>
 	<select id="getIndexImage" resultType="ShopIndexConfig">
 		SELECT
-			id,
-			picture_url,
-			linkto,
-			type,
-			sort,
-			NAME,
-			icon_url,
-			is_icon
+
+		<include refid="shopIndexConfigColumns"/>
 		FROM
-			shop_index_config
+			shop_index_config a
 		ORDER BY
 			type,
 			sort;

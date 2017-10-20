@@ -7,11 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
- * 首页配置cervice
+ * 首页配置service
  *
  * @author itguang
  * @create 2017-10-19 14:27
@@ -23,40 +22,7 @@ public class ShopIndexConfigService extends CrudService<ShopIndexConfigMapper,Sh
     @Autowired
     private ShopIndexConfigMapper shopIndexConfigMapper;
 
-    @Override
-    public ShopIndexConfig get(String id) {
-        return super.get(id);
-    }
 
-    @Override
-    public ShopIndexConfig get(ShopIndexConfig entity) {
-        return super.get(entity);
-    }
-
-    @Override
-    public List<ShopIndexConfig> findList(ShopIndexConfig entity) {
-        return super.findList(entity);
-    }
-
-    @Override
-    public void save(ShopIndexConfig entity) {
-        super.save(entity);
-    }
-
-    @Override
-    public void delete(ShopIndexConfig entity) {
-        super.delete(entity);
-    }
-
-    @Override
-    public void deleteAll(Collection<ShopIndexConfig> entitys) {
-        super.deleteAll(entitys);
-    }
-
-    @Override
-    public ShopIndexConfig findUniqueByProperty(String propertyName, Object value) {
-        return super.findUniqueByProperty(propertyName, value);
-    }
 
     public List<ShopIndexConfig> getByType(Integer type){
         List<ShopIndexConfig> lists = shopIndexConfigMapper.getByType(type);
