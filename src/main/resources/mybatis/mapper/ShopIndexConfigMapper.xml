@@ -15,6 +15,8 @@
 	
 	<sql id="shopIndexConfigJoins">
 	</sql>
+
+
 	
     <select id="getByType" resultType="ShopIndexConfig">
 		select picture_url,linkto,`name`,sort from shop_index_config where type=#{type} ORDER BY sort;

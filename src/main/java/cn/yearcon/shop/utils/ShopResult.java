@@ -55,12 +55,19 @@ public class ShopResult {
         this.msg = msg;
         this.data = data;
     }
+    public ShopResult(Integer status, String msg) {
+        this.status = status;
+        this.msg = msg;
+
+    }
+
 
     public ShopResult(Object data) {
         this.status = 1;
         this.msg = "OK";
         this.data = data;
     }
+
 
 
 
@@ -89,6 +96,12 @@ public class ShopResult {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "ShopResult{" +
+                "status=" + status +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }

@@ -1,14 +1,19 @@
 package cn.yearcon.shop.controller;
 
+import cn.yearcon.shop.common.annotation.JSON;
 import cn.yearcon.shop.entity.ShopIndexConfig;
+import cn.yearcon.shop.entity.ShopProduct;
 import cn.yearcon.shop.service.ShopIndexConfigService;
 import cn.yearcon.shop.service.ShopProductService;
 import cn.yearcon.shop.utils.ShopResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -29,32 +34,76 @@ public class ShopIndexConfigController {
 
     /**
      * 首页图片接口
+     *
      * @return
      */
-    @RequestMapping(value ="index/image")
-    public ShopResult getimage(){
+    @RequestMapping(value = "index/image")
+    public ShopResult getimage(HttpServletResponse response) {
         ShopResult shopResult = null;
-        List<ShopIndexConfig> lists=null;
+        List<ShopIndexConfig> lists = null;
         try {
-             lists= shopIndexConfigService.getIndexImage();
-             if(lists!=null){
-            shopResult = new ShopResult(1,"OK",lists);
-             }
+            lists = shopIndexConfigService.getIndexImage();
+            if (lists != null) {
+                shopResult = new ShopResult(1, "OK", lists);
+            }else {
+                shopResult = new ShopResult(1, "没有数据");
+            }
         } catch (Exception e) {
 
-            shopResult = new ShopResult(0,"未知错误",lists);
+            shopResult = new ShopResult(0, "服务器忙");
             e.printStackTrace();
         }
+        response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 
         return shopResult;
     }
 
-    public ShopResult getIndexCategoryData(){
+    @RequestMapping(value = "index/new-product")
+
+    public ShopResult getIndexNewProduct() {
+        ShopResult result;
+
+        try {
+            List<ShopProduct> list = shopProductService.findIsNew(6);
+            if (list != null) {
+
+                result = new ShopResult(1, "OK", list);
 
 
+            } else {
+                result = new ShopResult(0, "没有数据");
+            }
 
+        } catch (Exception e) {
+            result = new ShopResult(0, "服务器忙");
+            e.printStackTrace();
+        }
+        System.out.println(result.toString());
 
-        return null;
+        return result;
+    }
+
+    @RequestMapping(value = "index/category")
+    public ShopResult getIndexCategory(){
+        ShopResult result=null;
+
+        try {
+            HashMap<String, List<ShopProduct>> map = shopIndexConfigService.findIndexCategory();
+
+            if(map!=null){
+                result  = new ShopResult(1, "OK", map);
+            }else {
+                result  = new ShopResult(1, "没有数据", map);
+            }
+
+        } catch (Exception e) {
+            result  = new ShopResult(0, "服务器忙");
+            e.printStackTrace();
+        }
+        System.out.println(result.toString());
+
+        return result;
+
     }
 
 

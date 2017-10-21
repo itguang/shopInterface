@@ -41,6 +41,8 @@ public class CheckOpenidFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+        //服务端设置允许跨域
+        response.setHeader("Access-Control-Allow-Origin", "*");
         Boolean hasOpenid=false;
         String openid;
 

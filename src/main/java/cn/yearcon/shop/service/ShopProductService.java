@@ -1,11 +1,20 @@
 package cn.yearcon.shop.service;
 
+import cn.yearcon.shop.common.CustomerJsonSerializer;
+import cn.yearcon.shop.entity.ShopCategory;
 import cn.yearcon.shop.entity.ShopProduct;
 import cn.yearcon.shop.mapper.ShopProductMapper;
 import cn.yearcon.shop.service.common.CrudService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * ShopProduct 业务逻辑层
@@ -19,6 +28,34 @@ public class ShopProductService extends CrudService<ShopProductMapper,ShopProduc
 
     @Autowired
     private ShopProductMapper shopProductMapper;
+
+
+
+    /**
+     * 在商品表中查找新品,返回特定属性值
+     * @param size 查找新品数据的数量,
+     * @return  List<ShopProduct>
+     */
+    public List<ShopProduct> findIsNew(Integer size){
+        List<ShopProduct> list = shopProductMapper.findIsNew(size);
+        return list;
+    }
+
+    /**
+     * 通过商品id查找商品信息
+     * @param id
+     * @return
+     */
+    public ShopProduct findShopProductByid(String id){
+        ShopProduct shopProduct = shopProductMapper.findShopProductByid(id);
+        return shopProduct;
+
+    }
+
+
+
+
+
 
 
 }

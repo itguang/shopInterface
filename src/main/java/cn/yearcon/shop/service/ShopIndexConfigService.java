@@ -1,12 +1,15 @@
 package cn.yearcon.shop.service;
 
+import cn.yearcon.shop.entity.ShopCategory;
 import cn.yearcon.shop.entity.ShopIndexConfig;
+import cn.yearcon.shop.entity.ShopProduct;
 import cn.yearcon.shop.mapper.ShopIndexConfigMapper;
 import cn.yearcon.shop.service.common.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -32,4 +35,32 @@ public class ShopIndexConfigService extends CrudService<ShopIndexConfigMapper,Sh
         List<ShopIndexConfig> lists = shopIndexConfigMapper.getIndexImage();
         return lists;
     }
+
+
+    /**
+     * 查找首页分类信息
+     * @return
+     */
+    public HashMap<String, List<ShopProduct>> findIndexCategory(){
+        List<ShopCategory> allCategory = findAllCategory();
+        HashMap<String, List<ShopProduct>> map = new HashMap<>();
+        for (ShopCategory category : allCategory) {
+            String categoryName  = category.getCategoryName();
+            String categoryId = category.getId();
+            List<ShopProduct> indexCategoryByCategoryId = shopIndexConfigMapper.findIndexCategoryByCategoryId(categoryId);
+            map.put(categoryName,indexCategoryByCategoryId);
+        }
+        return map;
+    }
+
+
+    /**
+     * 查询所有分类信息
+     * @return
+     */
+    public List<ShopCategory> findAllCategory(){
+        List<ShopCategory> list = shopIndexConfigMapper.findAllCategory();
+        return list;
+    }
+
 }

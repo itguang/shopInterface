@@ -2,6 +2,7 @@ package cn.yearcon.shop;
 
 import cn.yearcon.shop.entity.ShopProduct;
 import cn.yearcon.shop.mapper.ShopProductMapper;
+import cn.yearcon.shop.service.ShopProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class ShopProductTest {
 
     @Autowired
     private ShopProductMapper shopProductMapper;
+    @Autowired
+    private ShopProductService shopProductService;
 
 
     @Test
@@ -31,8 +34,13 @@ public class ShopProductTest {
     }
     @Test
     public void test2(){
-        List<ShopProduct> list = shopProductMapper.findIsNew();
+        List<ShopProduct> list = shopProductMapper.findIsNew(6);
         System.out.println(list.toString());
+
+    } @Test
+    public void test3(){
+        ShopProduct shopProduct = shopProductService.findShopProductByid("9");
+        System.out.println(shopProduct.toString());
 
     }
 
