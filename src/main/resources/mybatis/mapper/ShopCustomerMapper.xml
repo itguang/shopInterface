@@ -5,7 +5,8 @@
 	<sql id="shopCustomerColumns">
 		a.id AS "id",
 		a.openid AS "openid",
-		a.shipping_address_id AS "shippingAddressId"
+		a.shipping_address_id AS "shippingAddressId",
+		a.pay_password AS "payPassword"
 	</sql>
 	
 	<sql id="shopCustomerJoins">
@@ -58,11 +59,13 @@
 		INSERT INTO shop_customer(
 			id,
 			openid,
-			shipping_address_id
+			shipping_address_id,
+			pay_password
 		) VALUES (
 			#{id},
 			#{openid},
-			#{shippingAddressId}
+			#{shippingAddressId},
+			#{payPassword}
 		)
 	</insert>
 	
@@ -70,6 +73,7 @@
 		UPDATE shop_customer SET 	
 			openid = #{openid},
 			shipping_address_id = #{shippingAddressId}
+			pay_password=#{payPassword}
 		WHERE id = #{id}
 	</update>
 	

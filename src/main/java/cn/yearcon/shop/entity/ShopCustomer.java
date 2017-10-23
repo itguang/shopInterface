@@ -27,6 +27,10 @@ public class ShopCustomer {
 	 *收货地址
 	 */
 	private Integer shippingAddressId;
+	/**
+	 * 支付密码
+	 */
+	private String payPassword;
 
 	public String getId() {
 		return id;
@@ -52,12 +56,21 @@ public class ShopCustomer {
 		this.shippingAddressId = shippingAddressId;
 	}
 
+	public String getPayPassword() {
+		return payPassword;
+	}
+
+	public void setPayPassword(String payPassword) {
+		this.payPassword = payPassword;
+	}
+
 	@Override
 	public String toString() {
 		return "ShopCustomer{" +
 				"id='" + id + '\'' +
 				", openid='" + openid + '\'' +
 				", shippingAddressId=" + shippingAddressId +
+				", payPassword='" + payPassword + '\'' +
 				'}';
 	}
 }

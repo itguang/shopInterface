@@ -49,6 +49,10 @@ public class ShopOrder  {
 	 */
 	private String productId;
 	/**
+	 * 产品规格id
+	 */
+	private String productSpecificationId;
+	/**
 	 *商品编码
 	 */
 	private String productCode;
@@ -145,6 +149,17 @@ public class ShopOrder  {
 	 */
 	private Integer deliveryStatus;
 
+	/**
+	 *快递公司
+	 *
+	 */
+	private String courierCompany;
+
+	/**
+	 *快递单号
+	 */
+	private String courierNumber;
+
 	public String getId() {
 		return id;
 	}
@@ -207,6 +222,14 @@ public class ShopOrder  {
 
 	public void setProductId(String productId) {
 		this.productId = productId;
+	}
+
+	public String getProductSpecificationId() {
+		return productSpecificationId;
+	}
+
+	public void setProductSpecificationId(String productSpecificationId) {
+		this.productSpecificationId = productSpecificationId;
 	}
 
 	public String getProductCode() {
@@ -401,6 +424,22 @@ public class ShopOrder  {
 		this.deliveryStatus = deliveryStatus;
 	}
 
+	public String getCourierCompany() {
+		return courierCompany;
+	}
+
+	public void setCourierCompany(String courierCompany) {
+		this.courierCompany = courierCompany;
+	}
+
+	public String getCourierNumber() {
+		return courierNumber;
+	}
+
+	public void setCourierNumber(String courierNumber) {
+		this.courierNumber = courierNumber;
+	}
+
 	@Override
 	public String toString() {
 		return "ShopOrder{" +
@@ -412,6 +451,7 @@ public class ShopOrder  {
 				", remarkSeller='" + remarkSeller + '\'' +
 				", customerId='" + customerId + '\'' +
 				", productId='" + productId + '\'' +
+				", productSpecificationId='" + productSpecificationId + '\'' +
 				", productCode='" + productCode + '\'' +
 				", productName='" + productName + '\'' +
 				", productSimplename='" + productSimplename + '\'' +
@@ -436,6 +476,8 @@ public class ShopOrder  {
 				", shoppingAddressId='" + shoppingAddressId + '\'' +
 				", consigneeCode='" + consigneeCode + '\'' +
 				", deliveryStatus=" + deliveryStatus +
+				", courierCompany='" + courierCompany + '\'' +
+				", courierNumber='" + courierNumber + '\'' +
 				'}';
 	}
 }

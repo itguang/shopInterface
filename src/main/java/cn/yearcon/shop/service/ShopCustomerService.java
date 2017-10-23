@@ -20,4 +20,25 @@ public class ShopCustomerService extends CrudService<ShopCustomerMapper,ShopCust
     @Autowired
     private ShopCustomerMapper shopCustomerMapper;
 
+    /**
+     * 通过openid查找顾客表唯一值
+     * @param openid
+     * @return
+     */
+    public ShopCustomer findUniqueByOPenid(String openid){
+        ShopCustomer shopCustomer = shopCustomerMapper.findUniqueByProperty("openid", openid);
+        return  shopCustomer;
+    }
+
+    /**
+     * 根据openid设置支付密码
+     * @param payPassword 支付密码
+     * @param openid openid
+     * @return
+     */
+    public void updatePayPasswordByOpenid(String payPassword, String openid){
+        shopCustomerMapper.updatePayPasswordByOpenid(payPassword, openid);
+    }
+
+
 }

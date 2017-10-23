@@ -26,6 +26,10 @@ public class ShopCategoryService extends CrudService<ShopCategoryMapper, ShopCat
     @Autowired
     private ShopCategoryMapper shopCategoryMapper;
 
+    /**
+     * 查询所有分类信息
+     * @return
+     */
     public List<ShopCategory> getAllShopCategory() {
         List<ShopCategory> list = shopCategoryMapper.getAllShopCategory();
         return list;

@@ -27,9 +27,13 @@ public class ShopCaregoryController {
     @Autowired
     private ShopCategoryService shopCategoryService;
 
+    /**
+     *查询所有分类信息
+     * @return
+     */
     @RequestMapping(value = "category")
     public ShopResult getAllCategory(){
-        System.out.println("================category");
+
         ShopResult result = null;
         try {
             List<ShopCategory> list = shopCategoryService.getAllShopCategory();
@@ -44,7 +48,13 @@ public class ShopCaregoryController {
         return result;
     }
 
-
+    /**
+     * 通过商品分类id 和分页参数,获取商品信息
+     * @param id 商品分类id
+     * @param curPage 页数
+     * @param pageSize 页大小
+     * @return
+     */
     @RequestMapping(value = "category/page")
     public ShopResult getShopProductByCategoryId(@RequestParam(value = "id") String id, @RequestParam(value ="curPage" ) int curPage, @RequestParam(value = "pageSize") int pageSize){
 

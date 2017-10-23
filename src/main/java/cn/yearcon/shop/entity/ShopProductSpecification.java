@@ -27,10 +27,11 @@ public class ShopProductSpecification{
 	 * 产品规格名称
 	 */
 	private String name;
+
 	/**
 	 *颜色名称
 	 */
-	private String colorName;
+	private String color;
 	/**
 	 * 库存
 	 */
@@ -64,12 +65,12 @@ public class ShopProductSpecification{
 		this.name = name;
 	}
 
-	public String getColorName() {
-		return colorName;
+	public String getColor() {
+		return color;
 	}
 
-	public void setColorName(String colorName) {
-		this.colorName = colorName;
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 	public Integer getInventory() {
@@ -94,7 +95,7 @@ public class ShopProductSpecification{
 				"id='" + id + '\'' +
 				", productId='" + productId + '\'' +
 				", name='" + name + '\'' +
-				", colorName='" + colorName + '\'' +
+				", color='" + color + '\'' +
 				", inventory=" + inventory +
 				", needIntegration=" + needIntegration +
 				'}';

@@ -15,10 +15,18 @@ import javax.persistence.Id;
 @Entity//要使用spring data jpa 要在实体类上加上此注解
 public class ShopShippingAddress {
 	/**
-	 *顾客id
+	 *收货地址id
 	 */
 	@Id
 	private String id;
+	/**
+	 * 顾客id
+	 */
+	private String customerId;
+	/**
+	 * openid (数据库表中无此字段,只是为了接收客户端提交的数据)
+	 */
+	private String openid;
 	/**
 	 *省
 	 */
@@ -58,6 +66,22 @@ public class ShopShippingAddress {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 
 	public String getProvince() {
@@ -128,6 +152,8 @@ public class ShopShippingAddress {
 	public String toString() {
 		return "ShopShippingAddress{" +
 				"id='" + id + '\'' +
+				", customerId='" + customerId + '\'' +
+				", openid='" + openid + '\'' +
 				", province='" + province + '\'' +
 				", city='" + city + '\'' +
 				", area='" + area + '\'' +

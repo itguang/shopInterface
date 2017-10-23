@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 /**
  * 收货地址测试
  *
@@ -23,5 +25,10 @@ public class ShopShippingAddressTest {
     public void test1(){
         ShopShippingAddress shopShippingAddress = shopShippingAddressMapper.get("783f280e4acd4731ba89fe58d06dd397");
         System.out.println(shopShippingAddress.toString());
+    }
+    @Test
+    public void test2(){
+        List<ShopShippingAddress> list = shopShippingAddressMapper.getShopShippingAddressesByOpenid("123");
+        System.out.println(list.toString());
     }
 }

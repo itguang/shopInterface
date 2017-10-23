@@ -25,11 +25,13 @@ public interface ShopCategoryMapper extends CrudDao<ShopCategory> {
      * @return
      */
     @Select("SELECT\n" +
-            "\ta.id AS \"id\",\n" +
-            "\ta.category_name AS \"categoryName\",\n" +
-            "\ta.category_picture_url AS \"categoryPictureUrl\"\n" +
+            "\ta.id AS id,\n" +
+            "\ta.category_name AS categoryName,\n" +
+            "\ta.category_picture_url AS categoryPictureUrl\n" +
             "FROM\n" +
-            "\tshop_category a")
+            "\tshop_category a\n" +
+            "ORDER BY\n" +
+            "\ta.sort DESC")
     List<ShopCategory> getAllShopCategory();
 
     /**
