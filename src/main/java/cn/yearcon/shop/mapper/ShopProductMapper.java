@@ -7,6 +7,7 @@ package cn.yearcon.shop.mapper;
 import cn.yearcon.shop.entity.ShopCategory;
 import cn.yearcon.shop.entity.ShopProduct;
 import cn.yearcon.shop.mapper.common.CrudDao;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -111,6 +112,13 @@ public interface ShopProductMapper extends CrudDao<ShopProduct> {
             "SET a.sales = a.sales+1\n" +
             "WHERE a.id = #{id};")
     Integer incrementShopProductSales(String id);
+
+
+
+    Integer findListCount(ShopProduct shopProduct);
+
+
+
 
 
 

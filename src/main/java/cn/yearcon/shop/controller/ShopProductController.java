@@ -71,6 +71,26 @@ public class ShopProductController {
 
     }
 
+    /**
+     * 通过商品分类页面的条件查找相关商品信息
+     * @param shopProduct 分类条件
+     * @return
+     */
+    @RequestMapping("product/select")
+    public ShopResult findListByCondition(ShopProduct shopProduct){
+        ShopResult result = null;
+        try {
+            List<ShopProduct> list = shopProductService.findListByCondition(shopProduct);
+            result = new ShopResult(list);
+        } catch (Exception e) {
+            result = new ShopResult(0,"服务器忙");
+            e.printStackTrace();
+        }
+
+        return result;
+
+    }
+
 
 
 }

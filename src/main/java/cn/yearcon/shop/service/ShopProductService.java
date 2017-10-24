@@ -1,13 +1,12 @@
 package cn.yearcon.shop.service;
 
-import cn.yearcon.shop.common.CustomerJsonSerializer;
-import cn.yearcon.shop.entity.ShopCategory;
+
 import cn.yearcon.shop.entity.ShopProduct;
 import cn.yearcon.shop.mapper.ShopProductMapper;
 import cn.yearcon.shop.service.common.CrudService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+
+import cn.yearcon.shop.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -77,6 +76,31 @@ public class ShopProductService extends CrudService<ShopProductMapper,ShopProduc
       return i;
 
    }
+
+    /**
+     * 通过商品分类页面的条件查找相关商品信息
+     * @param shopProduct
+     * @return
+     */
+    public List<ShopProduct> findListByCondition(ShopProduct shopProduct){
+        int count = findListCount(shopProduct);
+        int pagenum = shopProduct.getPagenum();
+        int pageSize = shopProduct.getPageSize();
+        Page page = new Page(pagenum, pageSize, count);
+        int startIndex = page.getStartIndex();
+        shopProduct.setStartIndex(startIndex);
+
+        List<ShopProduct> list = shopProductMapper.findList(shopProduct);
+        return list;
+
+    }
+
+
+    public Integer findListCount(ShopProduct shopProduct){
+        Integer i = shopProductMapper.findListCount(shopProduct);
+        return i;
+
+    }
 
 
 

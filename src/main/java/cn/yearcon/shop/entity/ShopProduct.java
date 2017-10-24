@@ -174,6 +174,21 @@ public class ShopProduct{
 	 */
 	private Integer endPoints;
 
+	/**
+	 * 开始索引
+	 */
+	private  int startIndex;
+
+	/**
+	 * 页大小
+	 */
+	private int pageSize;
+
+	/**
+	 * 当前页数
+	 */
+	private int pagenum;
+
 	public String getId() {
 		return id;
 	}
@@ -476,6 +491,30 @@ public class ShopProduct{
 
 	public void setEndPoints(Integer endPoints) {
 		this.endPoints = endPoints;
+	}
+
+	public int getStartIndex() {
+		return startIndex;
+	}
+
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public int getPagenum() {
+		return pagenum;
+	}
+
+	public void setPagenum(int pagenum) {
+		this.pagenum = pagenum;
 	}
 
 	@Override

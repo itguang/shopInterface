@@ -59,6 +59,27 @@ public class ShopProductTest {
         System.out.println(i);
 
     }
+    @Test
+    public void test6(){
+        ShopProduct shopProduct = new ShopProduct();
+//        shopProduct.setCategoryId("123");
+        shopProduct.setPagenum(1);
+        shopProduct.setPageSize(6);
+        List<ShopProduct> listByCondition = shopProductService.findListByCondition(shopProduct);
+
+        System.out.println(listByCondition.size());
+
+    }
+
+    @Test
+    public void test7(){
+        ShopProduct shopProduct = new ShopProduct();
+        shopProduct.setCategoryId("123");
+        Integer listCount = shopProductService.findListCount(shopProduct);
+
+        System.out.println(listCount);
+
+    }
 
 
 

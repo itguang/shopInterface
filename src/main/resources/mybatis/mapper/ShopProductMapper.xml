@@ -40,6 +40,22 @@
 		a.picture_url6 AS "pictureUrl6",
 		a.add_time AS "addTime"
 	</sql>
+	<sql id="shopProductCategoryColumns">
+		a.id AS "id",
+		a.name AS "name",
+		a.brand AS "brand",
+		a.visits AS "visits",
+		a.summary AS "summary",
+		a.stores AS "stores",
+		a.points AS "points",
+		a.description AS "description",
+		a.sales AS "sales",
+		a.residue AS "residue",
+		a.is_new AS "isNew",
+		a.is_hot AS "isHot",
+		a.is_alive AS "isAlive",
+		a.picture_url_default AS "pictureUrlDefault"
+	</sql>
 	
 	<sql id="shopProductJoins">
 	</sql>
@@ -52,19 +68,45 @@
 		<include refid="shopProductJoins"/>
 		WHERE a.id = #{id}
 	</select>
-	
+
 	<select id="findList" resultType="ShopProduct" >
-		SELECT 
-			<include refid="shopProductColumns"/>
+		SELECT
+		<include refid="shopProductCategoryColumns"/>
 		FROM shop_product a
 		<include refid="shopProductJoins"/>
 		<where>
-			
 			<if test="name != null and name != ''">
-				AND a.name LIKE 
-					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+				AND a.name LIKE
+				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="categoryId != null and categoryId != ''">
+				AND a.category_id = #{categoryId}
+			</if>
+			<if test="marketDate != null and marketDate != ''">
+				AND a.market_date = #{marketDate}
+			</if>
+			<if test="visits != null and visits != ''">
+				AND a.visits = #{visits}
+			</if>
+			<if test="occasion != null and occasion != ''">
+				AND a.occasion = #{occasion}
+			</if>
+			<if test="size != null and size != ''">
+				AND a.size = #{size}
+			</if>
+			<if test="style != null and style != ''">
+				AND a.style = #{style}
+			</if>
+			<if test="vampTexture != null and vampTexture != ''">
+				AND a.vamp_texture = #{vampTexture}
+			</if>
+			<if test="insoleTexture != null and insoleTexture != ''">
+				AND a.insole_texture = #{insoleTexture}
+			</if>
+			<if test="sales != null and sales != ''">
+				AND a.sales = #{sales}
 			</if>
 			<if test="isNew != null and isNew != ''">
 				AND a.is_new = #{isNew}
@@ -76,13 +118,62 @@
 				AND a.is_alive = #{isAlive}
 			</if>
 		</where>
-		<choose>
-			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
-				ORDER BY ${page.orderBy}
-			</when>
-			<otherwise>
-			</otherwise>
-		</choose>
+		LIMIT #{startIndex},#{pageSize}
+
+
+	</select>
+	<select id="findListCount" resultType="Integer" >
+		SELECT
+		COUNT(*)
+		FROM shop_product a
+		<include refid="shopProductJoins"/>
+		<where>
+
+
+			<if test="name != null and name != ''">
+				AND a.name LIKE
+				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="categoryId != null and categoryId != ''">
+				AND a.category_id = #{categoryId}
+			</if>
+			<if test="marketDate != null and marketDate != ''">
+				AND a.market_date = #{marketDate}
+			</if>
+			<if test="visits != null and visits != ''">
+				AND a.visits = #{visits}
+			</if>
+			<if test="occasion != null and occasion != ''">
+				AND a.occasion = #{occasion}
+			</if>
+			<if test="size != null and size != ''">
+				AND a.size = #{size}
+			</if>
+			<if test="style != null and style != ''">
+				AND a.style = #{style}
+			</if>
+			<if test="vampTexture != null and vampTexture != ''">
+				AND a.vamp_texture = #{vampTexture}
+			</if>
+			<if test="insoleTexture != null and insoleTexture != ''">
+				AND a.insole_texture = #{insoleTexture}
+			</if>
+			<if test="sales != null and sales != ''">
+				AND a.sales = #{sales}
+			</if>
+			<if test="isNew != null and isNew != ''">
+				AND a.is_new = #{isNew}
+			</if>
+			<if test="isHot != null and isHot != ''">
+				AND a.is_hot = #{isHot}
+			</if>
+			<if test="isAlive != null and isAlive != ''">
+				AND a.is_alive = #{isAlive}
+			</if>
+		</where>
+
 	</select>
 	
 	<select id="findAllList" resultType="ShopProduct" >
