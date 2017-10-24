@@ -30,7 +30,7 @@ public class ShopOrderController {
     private ShopOrderService shopOrderService;
 
     /**
-     *
+     *生成订单
      * @return
      */
     @RequestMapping(value = "order/save-order")
@@ -144,6 +144,12 @@ public class ShopOrderController {
         return result;
     }
 
+    /**
+     *根据订单id和支付密码确认订单状态
+     * @param orderId
+     * @param payPassword
+     * @return
+     */
     @RequestMapping("order/pay")
     public ShopResult pay(@RequestParam("orderId") String orderId,@RequestParam("payPassword") String payPassword){
         ShopResult result = null;

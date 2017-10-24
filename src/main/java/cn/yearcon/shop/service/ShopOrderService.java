@@ -120,6 +120,12 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
     }
 
 
+    /**
+     * 根据订单id和支付密码确认订单状态
+     * @param orderId
+     * @param payPassword
+     * @return
+     */
         public Integer  pay(String orderId,String payPassword){
 
             //通过 orderId 获取订单信息

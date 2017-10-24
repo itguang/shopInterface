@@ -53,7 +53,6 @@
 		a.residue AS "residue",
 		a.is_new AS "isNew",
 		a.is_hot AS "isHot",
-		a.is_alive AS "isAlive",
 		a.picture_url_default AS "pictureUrlDefault"
 	</sql>
 	
@@ -117,6 +116,7 @@
 			<if test="isAlive != null and isAlive != ''">
 				AND a.is_alive = #{isAlive}
 			</if>
+			AND a.is_alive = 1
 		</where>
 		LIMIT #{startIndex},#{pageSize}
 
@@ -172,6 +172,7 @@
 			<if test="isAlive != null and isAlive != ''">
 				AND a.is_alive = #{isAlive}
 			</if>
+			AND a.is_alive = 1
 		</where>
 
 	</select>
@@ -260,7 +261,7 @@
 			#{residue},
 			#{isNew},
 			#{isHot},
-			#{isAlive},
+			1,
 			#{pictureUrlDefault},
 			#{pictureUrl2},
 			#{pictureUrl3},
