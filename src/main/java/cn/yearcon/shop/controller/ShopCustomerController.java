@@ -29,10 +29,13 @@ public class ShopCustomerController {
     public ShopResult updatePayPasswordByOpenid(@RequestParam("payPassword") String payPassword, @RequestParam("openid") String openid) {
         ShopResult result = null;
         try {
-           shopCustomerService.updatePayPasswordByOpenid(payPassword, openid);
+           Integer i = shopCustomerService.updatePayPasswordByOpenid(payPassword, openid);
 
-                result = new ShopResult(1, "OK");
-
+           if(1==i){
+               result = new ShopResult(1, "OK");
+           }else {
+               result = new ShopResult(0, "设置密码失败");
+           }
         } catch (Exception e) {
             result = new ShopResult(0, "服务器忙");
             e.printStackTrace();

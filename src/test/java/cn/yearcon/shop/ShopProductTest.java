@@ -44,5 +44,22 @@ public class ShopProductTest {
 
     }
 
+    @Test
+    public void test4(){
+        Integer i = shopProductService.incrementShopProductVisits("9");
+
+        System.out.println(i);
+
+    }
+
+    @Test
+    public void test5(){
+        Integer i = shopProductService.incrementShopProductSales("9");
+
+        System.out.println(i);
+
+    }
+
+
 
 }

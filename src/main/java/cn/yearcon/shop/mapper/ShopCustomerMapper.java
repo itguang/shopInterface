@@ -8,6 +8,7 @@ import cn.yearcon.shop.entity.ShopCustomer;
 import cn.yearcon.shop.mapper.common.CrudDao;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * 顾客信息DAO接口
@@ -23,11 +24,11 @@ public interface ShopCustomerMapper extends CrudDao<ShopCustomer> {
      * @param openid openid
      * @return
      */
-    @Select("UPDATE shop_customer\n" +
+    @Update("UPDATE shop_customer\n" +
             "SET pay_password = #{payPassword}\n" +
             "WHERE\n" +
             "\topenid = #{openid}")
-    void updatePayPasswordByOpenid(@Param("payPassword") String payPassword, @Param("openid") String openid);
+    Integer updatePayPasswordByOpenid(@Param("payPassword") String payPassword, @Param("openid") String openid);
 
 	
 }

@@ -36,8 +36,9 @@ public class ShopCustomerService extends CrudService<ShopCustomerMapper,ShopCust
      * @param openid openid
      * @return
      */
-    public void updatePayPasswordByOpenid(String payPassword, String openid){
-        shopCustomerMapper.updatePayPasswordByOpenid(payPassword, openid);
+    public Integer updatePayPasswordByOpenid(String payPassword, String openid){
+       Integer i=  shopCustomerMapper.updatePayPasswordByOpenid(payPassword, openid);
+       return i;
     }
 
 

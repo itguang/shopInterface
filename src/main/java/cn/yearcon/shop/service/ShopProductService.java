@@ -48,9 +48,35 @@ public class ShopProductService extends CrudService<ShopProductMapper,ShopProduc
      */
     public ShopProduct findShopProductByid(String id){
         ShopProduct shopProduct = shopProductMapper.findShopProductByid(id);
+        //商品访问量+1
+        incrementShopProductVisits(id);
         return shopProduct;
 
     }
+
+    /**
+     * 商品访问量+1
+     * @param id
+     * @return
+     */
+    @Transactional(readOnly = false)
+   public Integer incrementShopProductVisits(String id){
+      Integer i =  shopProductMapper.incrementShopProductVisits(id);
+      return i;
+
+   }
+
+    /**
+     * 商品销量+1
+     * @param id
+     * @return
+     */
+   @Transactional(readOnly = false)
+   public Integer incrementShopProductSales(String id){
+      Integer i =  shopProductMapper.incrementShopProductSales(id);
+      return i;
+
+   }
 
 
 

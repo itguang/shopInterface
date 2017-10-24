@@ -55,13 +55,24 @@ public abstract class CrudService<D extends CrudDao<T>, T > {
 //    }
 
     /**
-     * 保存数据（插入或更新）
+     * 保存数据（插入）
      * @param entity
      */
     @Transactional(readOnly = false)
     public void save(T entity) {
 
             dao.insert(entity);
+
+    }
+    /**
+     * 保存数据（更新）
+     * @param entity
+     */
+    @Transactional(readOnly = false)
+    public Integer update(T entity) {
+
+       Integer i =  dao.update(entity);
+       return i;
 
     }
 

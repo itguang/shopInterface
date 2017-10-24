@@ -31,7 +31,7 @@ public interface ShopCategoryMapper extends CrudDao<ShopCategory> {
             "FROM\n" +
             "\tshop_category a\n" +
             "ORDER BY\n" +
-            "\ta.sort DESC")
+            "\ta.sort")
     List<ShopCategory> getAllShopCategory();
 
     /**

@@ -30,6 +30,8 @@ public class ShopProductSpecificationService extends CrudService<ShopProductSpec
      */
    public List<ShopProductSpecification> getShopProductSpecificationById( String id){
         List<ShopProductSpecification> list = shopProductSpecificationMapper.getShopProductSpecificationById(id);
+
+
         return list;
     }
 

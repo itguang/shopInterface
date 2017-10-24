@@ -109,7 +109,7 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
         order.setConsigneeCode(shopShippingAddress.getPostcode());
 
 
-        //保存订单
+        //生成订单
         int i = shopOrderMapper.insert(order);
         if(i==1){
             return order.getId();
@@ -133,11 +133,18 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
                 //修改订单支付状态
                 shopOrder.setPayStatus(1);
             }
-            int i = shopOrderMapper.update(shopOrder);
+            int i = this.update(shopOrder);
+            if(1==i){
+                //商品销量+1
+                shopProductService.incrementShopProductSales(shopOrder.getProductId());
+            }
 
 
             return i;
         }
+
+
+
 
 
 }

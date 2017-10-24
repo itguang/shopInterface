@@ -50,6 +50,7 @@ public class HttpClientUtil {
             // 返回响应体的内容
             return EntityUtils.toString(response.getEntity(), "UTF-8");
         }
+        System.out.println("get请求失败---状态码="+response.getStatusLine().getStatusCode());
         return null;
     }
 

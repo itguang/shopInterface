@@ -8,7 +8,9 @@ import cn.yearcon.shop.entity.ShopCategory;
 import cn.yearcon.shop.entity.ShopProduct;
 import cn.yearcon.shop.mapper.common.CrudDao;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
+import javax.persistence.Id;
 import java.util.List;
 
 /**
@@ -86,6 +88,29 @@ public interface ShopProductMapper extends CrudDao<ShopProduct> {
             "WHERE\n" +
             "\ta.id = #{id};")
     ShopProduct findShopProductByid(String id);
+
+
+    /**
+     * 商品访问量+1
+     * @param id
+     * @return
+     */
+    @Update("UPDATE shop_product a\n" +
+            "SET a.visits = a.visits + 1\n" +
+            "WHERE\n" +
+            "\ta.id = #{id};")
+    Integer incrementShopProductVisits(String id);
+
+
+    /**
+     * 商品销量+1
+     * @param id
+     * @return
+     */
+    @Update("UPDATE shop_product a\n" +
+            "SET a.sales = a.sales+1\n" +
+            "WHERE a.id = #{id};")
+    Integer incrementShopProductSales(String id);
 
 
 
