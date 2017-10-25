@@ -19,5 +19,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class ShopConfigService extends CrudService<ShopConfigMapper,ShopConfig>{
 
     @Autowired
-    private ShopCustomerMapper shopCustomerMapper;
+    private ShopConfigMapper shopConfigMapper;
+
+    public ShopConfig getById(String id){
+        ShopConfig shopConfig = shopConfigMapper.get(id);
+        return shopConfig;
+
+    }
+
 }

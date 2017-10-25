@@ -18,12 +18,24 @@ import java.io.IOException;
  * 如果没有重定向到 微信的网页授权链接 进行网页授权登陆
  * 如果有openid,放行即可
  */
+
 public class CheckOpenidFilter implements Filter {
+    String domain;
+    String appid;
+    /**
+     * 不变参数
+     */
+    String weixinLoginUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=";
+
+    String parm = "&response_type=code&scope=snsapi_userinfo&#wechat_redirect";
+
 
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         System.out.println("CheckOpenidFilter init...");
+        domain = filterConfig.getInitParameter("domain");
+        appid = filterConfig.getInitParameter("appid");
 
     }
 
@@ -39,6 +51,8 @@ public class CheckOpenidFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
+
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         //服务端设置允许跨域
@@ -47,7 +61,7 @@ public class CheckOpenidFilter implements Filter {
         String openid;
 
 //        有的话放行
-        System.out.println("拦截" + request.getRequestURL());
+        System.out.println("拦截:=====" + request.getRequestURL());
 
         //判断cookie中是否有openid
         Cookie[] cookies = request.getCookies();
@@ -79,7 +93,8 @@ public class CheckOpenidFilter implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
         }else{
             //        没有的话,重定向到微信网页授权登陆页面
-//           String loginUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1642c5a5400c82e2&redirect_uri=http://www.yearcontest.com&response_type=code&scope=snsapi_userinfo&#wechat_redirect";
+//            String loginUrl =weixinLoginUrl+appid+"&redirect_uri=http://"+domain+parm;
+//          "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1642c5a5400c82e2&redirect_uri=http://www.yearcontest.com&response_type=code&scope=snsapi_userinfo&#wechat_redirect";
 //            response.sendRedirect(loginUrl);
 
             //开发接口时为了方便,先放行

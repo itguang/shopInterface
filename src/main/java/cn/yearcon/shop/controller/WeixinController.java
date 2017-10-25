@@ -1,5 +1,9 @@
 package cn.yearcon.shop.controller;
 
+import cn.yearcon.shop.entity.ShopConfig;
+import cn.yearcon.shop.entity.ShopCustomer;
+import cn.yearcon.shop.service.ShopConfigService;
+import cn.yearcon.shop.service.ShopCustomerService;
 import cn.yearcon.shop.utils.HttpClientUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +21,24 @@ import java.util.Map;
 
 /**
  * @author itguang
- *
  */
 @RestController
 public class WeixinController {
+
+    @Autowired
+    private ShopCustomerService shopCustomerService;
+
+    @Autowired
+    private ShopConfigService shopConfigService;
 
     @Autowired
     private HttpClientUtil httpClientUtil;
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Value("${weixin.appid}")
+    //@Value("${weixin.appid}")
     String appid;
-    @Value("${weixin.secret}")
+    //@Value("${weixin.secret}")
     String secret;
     @Value("${weixin.grant_type}")
     String grant_type;
@@ -39,16 +48,38 @@ public class WeixinController {
 
     @RequestMapping(value = {"", ""})
     public String weixinLogin(HttpServletRequest request, HttpServletResponse response) {
+
+        //从数据库获取 weixin.appid 和 weixin.secret
+        ShopConfig shopConfig = null;
+        try {
+            shopConfig = shopConfigService.getById("1");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (shopConfig == null) {
+            return "尚未在后台设置微信公共号基本配置";
+        }
+        appid = shopConfig.getAppid();
+        secret = shopConfig.getSecret();
+
+
         // 用户同意授权后，能获取到code
         String code = request.getParameter("code");
         if (code == null) {
             return "获取微信code失败!";
         }
+
         System.out.println("code=" + code);
         String openid = getOpenidByCode(code);
-        System.out.println("openid=" + openid);
 
-        Cookie cookie = sveOpenid(openid,request);
+        if (openid == null) {
+            return "获取微信openid失败!";
+        }
+
+        //如果第一次访问,保存openid到数据库中
+        saveOpenidToDataBase(openid);
+        System.out.println("openid=" + openid);
+        Cookie cookie = saveOpenid(openid, request);
 
         try {
             response.addCookie(cookie);
@@ -66,8 +97,8 @@ public class WeixinController {
      * @param openid
      * @return 保存了openid的Cookie
      */
-    private Cookie sveOpenid(String openid,HttpServletRequest request) {
-        //往cookie中设置openid(没有过期时间)
+    private Cookie saveOpenid(String openid, HttpServletRequest request) {
+        //往cookie中设置openid
         Cookie cookie = new Cookie("openid", openid);
         //cookie有效期一年
         cookie.setMaxAge(60 * 60 * 24 * 365);
@@ -112,6 +143,17 @@ public class WeixinController {
         String access_token = (String) result.get("access_token");
         String openid = (String) result.get("openid");
         return openid;
+    }
+
+    /**
+     * 保存openid到数据库Customer表,如果数据库表中已有则什么都不做
+     *
+     * @param openid
+     * @return
+     */
+    public Integer saveOpenidToDataBase(String openid) {
+        Integer i = shopCustomerService.saveOPenid(openid);
+        return i;
     }
 
 
