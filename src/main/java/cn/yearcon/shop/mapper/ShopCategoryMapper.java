@@ -35,21 +35,22 @@ public interface ShopCategoryMapper extends CrudDao<ShopCategory> {
     List<ShopCategory> getAllShopCategory();
 
     /**
-     * 通过分类ID获取所有商品信息,注意,mysql分页查询 limit 从0开始
+     * 通过分类ID获取所有商品信息(按销量从高到底排序),注意,mysql分页查询 limit 从0开始
      * @return
      */
     @Select("SELECT\n" +
-            "\ta.id AS \"id\",\n" +
-            "\ta. NAME AS \"name\",\n" +
-            "  a.description AS \"description\",\n" +
-            "\ta.points AS \"points\",\n" +
-            "\ta.sales AS \"sales\",\n" +
-            "\ta.picture_url_default AS \"pictureUrlDefault\"\n" +
+            "\ta.id AS id,\n" +
+            "\ta.`name` AS `name`,\n" +
+            "\ta.description AS description,\n" +
+            "\ta.points AS points,\n" +
+            "\ta.sales AS sales,\n" +
+            "\ta.visits AS \"visits\",\n" +
+            "\ta.picture_url_default AS pictureUrlDefault\n" +
             "FROM\n" +
             "\tshop_product a\n" +
             "WHERE\n" +
             "\ta.category_id = #{id}\n" +
-            "ORDER BY sales DESC\n" +
+            "ORDER BY points\n" +
             "LIMIT #{startIndex},#{pageSize};")
     List<ShopProduct> getShopProductByCategoryId(@Param("id") String id, @Param("startIndex") int startIndex,@Param("pageSize") int pageSize);
 

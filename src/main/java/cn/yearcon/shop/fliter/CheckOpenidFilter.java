@@ -1,5 +1,7 @@
 package cn.yearcon.shop.fliter;
 
+import org.springframework.stereotype.Component;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;

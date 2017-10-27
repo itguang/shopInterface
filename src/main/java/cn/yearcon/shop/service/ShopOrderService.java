@@ -8,12 +8,15 @@ import cn.yearcon.shop.mapper.ShopOrderMapper;
 import cn.yearcon.shop.pojo.OrderBean;
 import cn.yearcon.shop.service.common.CrudService;
 import cn.yearcon.shop.utils.IdGen;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Id;
+import java.io.IOException;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * ShopOrder 业务逻辑层
@@ -34,6 +37,12 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
     private ShopProductService shopProductService;
     @Autowired
     private ShopCustomerService shopCustomerService;
+
+    @Autowired
+    private PointService pointService;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     /**
      *根据客户端提交的数据生成订单
@@ -124,7 +133,7 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
      * 根据订单id和支付密码确认订单状态
      * @param orderId
      * @param payPassword
-     * @return
+     * @return 1:支付成功 , 2: 积分不足 ,3:支付密码错误,4:扣除积分失败
      */
         public Integer  pay(String orderId,String payPassword){
 
@@ -134,19 +143,94 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
 
             //判断支付密码是否正确
             ShopCustomer shopCustomer = shopCustomerService.get(customerId);
-            String password = shopCustomer.getPayPassword();
+            String password="";
+            if (shopCustomer!=null){
+                 password = shopCustomer.getPayPassword();
+            }
+
+            //支付密码正确
             if(payPassword.equals(password)){
-                //修改订单支付状态
-                shopOrder.setPayStatus(1);
+
+
+                //1,获取订单应付积分值
+                int amountPaid = shopOrder.getAmountPaid();
+                //2,获取openid
+                String openid = shopCustomer.getOpenid();
+                //3,根据openid查询用户积分是否足够
+                int point =getPointByOpenid(openid);
+                //积分足够
+                if (amountPaid<=point){
+                    //4,如果足够,减去相应积分,修改订单状态
+                    String paid ="-"+String.valueOf(amountPaid);
+                    int code = updatePoint(openid,paid, "订单id=" + shopOrder.getId());
+                    //扣除积分成功
+                    if (code==0){
+                        //5,修改订单支付状态
+                        shopOrder.setPayStatus(1);
+                        int i = this.update(shopOrder);
+                        if(1==i){
+                            //6,商品销量+1
+                            shopProductService.incrementShopProductSales(shopOrder.getProductId());
+                        }
+                        //7,支付成功
+                        return i;
+                    }else {
+                        //扣除积分失败
+                        return 4;
+                    }
+                }else {
+                    //积分不足,返回状态 2,供controller调用
+                    return 2;
+                }
+            }else {
+                //支付密码错误
+                return 3;
             }
-            int i = this.update(shopOrder);
-            if(1==i){
-                //商品销量+1
-                shopProductService.incrementShopProductSales(shopOrder.getProductId());
+
+        }
+
+
+    /**
+     * 通过openidid 查询该会员还有多少积分
+     * @param openid
+     * @return 会员积分
+     */
+    private Integer getPointByOpenid(String openid){
+
+        String quryPoint = pointService.quryPoint(openid);
+        try {
+            Map map = objectMapper.readValue(quryPoint, Map.class);
+            Integer code = (Integer)map.get("code");
+            if(code==0){
+                Map map1 = (Map) map.get("jsondata");
+                String points= (String)map1.get("points");
+                return Integer.parseInt(points);
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+        }
+
+        private Integer updatePoint(String openid, String ChangePoint, String Remark){
+            String body = pointService.updatePoint("oeIqJuORK4ThFP7siwepco9zR9zA","500","测试一下");
+            try {
+                Map map = objectMapper.readValue(body, Map.class);
+                Integer code = (Integer) map.get("code");
+                Map jsondata = (Map) map.get("jsondata");
+                System.out.println("code="+code);
+                return code;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
 
-            return i;
+
+        return null;
+
         }
 
 

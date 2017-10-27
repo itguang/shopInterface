@@ -155,10 +155,20 @@ public class ShopOrderController {
         ShopResult result = null;
 
         try {
-            Integer pay = shopOrderService.pay(orderId,payPassword);
-            if(pay==1){
+            Integer code = shopOrderService.pay(orderId,payPassword);
+            if(code==1){
                 result = new ShopResult(1,"OK");
 
+            }
+            if (code==2){
+                result = new ShopResult(0,"对不起,您的积分不足!");
+
+            }
+            if(code==3){
+                result = new ShopResult(0,"支付密码错误!");
+            }
+            if(code==4){
+                result = new ShopResult(0,"扣除积分失败!");
             }
         } catch (Exception e) {
             result = new ShopResult(0,"服务器忙");

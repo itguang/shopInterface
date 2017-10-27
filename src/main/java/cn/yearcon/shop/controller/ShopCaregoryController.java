@@ -59,9 +59,7 @@ public class ShopCaregoryController {
         try {
             List<ShopProduct> list = shopCategoryService.getShopProductByCategoryId(id, curPage, pageSize);
             result = new ShopResult(list);
-            if (list==null){
-                result = new ShopResult(0,"没有数据");
-            }
+
         } catch (Exception e) {
             result = new ShopResult(0,"服务器忙");
             e.printStackTrace();

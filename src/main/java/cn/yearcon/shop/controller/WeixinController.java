@@ -161,4 +161,9 @@ public class WeixinController {
     public String test(HttpServletRequest request, HttpServletResponse response) throws IOException {
         return "redirect:https://www.baidu.com";
     }
+
+
+
+
+
 }
