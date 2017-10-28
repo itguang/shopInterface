@@ -170,6 +170,9 @@ public class ShopOrderController {
             if(code==4){
                 result = new ShopResult(0,"扣除积分失败!");
             }
+            if (code==5){
+                result = new ShopResult(0,"支付失败,该订单不存在");
+            }
         } catch (Exception e) {
             result = new ShopResult(0,"服务器忙");
             e.printStackTrace();

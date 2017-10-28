@@ -26,4 +26,6 @@ public class ShopOrderTest {
         ShopOrder shopOrder = shopOrderMapper.get("1");
         System.out.println(shopOrder.toString());
     }
+
+
 }

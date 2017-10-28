@@ -37,12 +37,20 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
     private ShopProductService shopProductService;
     @Autowired
     private ShopCustomerService shopCustomerService;
+    @Autowired
+    private ShopProductSpecificationService shopProductSpecificationService;
 
     @Autowired
     private PointService pointService;
 
     @Autowired
     private ObjectMapper objectMapper;
+
+
+
+
+
+
 
     /**
      *根据客户端提交的数据生成订单
@@ -92,8 +100,9 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
         order.setConsignee(shopShippingAddress.getName());
         //收件人手机
         order.setConsigneeMobile(shopShippingAddress.getMobile());
-        //应付积分 (商品数量*商品所需积分)
-        order.setAmountPayable(productAmount*shopProduct.getPoints());
+        //应付积分 (需要根据商品规格id来获取其积分值:商品数量*商品所需积分)
+        int needIntegration = shopProductSpecificationService.get(productSpecificationId).getNeedIntegration();
+        order.setAmountPayable(productAmount*needIntegration);
         //实付积分
         order.setAmountPaid(productAmount*shopProduct.getPoints());
         //发票抬头
@@ -139,14 +148,16 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
 
             //通过 orderId 获取订单信息
             ShopOrder shopOrder = shopOrderMapper.get(orderId);
+            if (shopOrder==null){
+                return 5;//该订单不存在
+
+            }
             String customerId = shopOrder.getCustomerId();
 
             //判断支付密码是否正确
             ShopCustomer shopCustomer = shopCustomerService.get(customerId);
-            String password="";
-            if (shopCustomer!=null){
-                 password = shopCustomer.getPayPassword();
-            }
+            String password=getPayPassword( shopCustomer.getOpenid());
+
 
             //支付密码正确
             if(payPassword.equals(password)){
@@ -215,12 +226,19 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
 
         }
 
+    /**
+     * 积分增减
+     * @param openid
+     * @param ChangePoint 积分值.负为减,正为增
+     * @param Remark 备注:订单id
+     * @return 0:成功.1:失败
+     */
         private Integer updatePoint(String openid, String ChangePoint, String Remark){
-            String body = pointService.updatePoint("oeIqJuORK4ThFP7siwepco9zR9zA","500","测试一下");
+            String body = pointService.updatePoint(openid,ChangePoint,Remark);
             try {
                 Map map = objectMapper.readValue(body, Map.class);
                 Integer code = (Integer) map.get("code");
-                Map jsondata = (Map) map.get("jsondata");
+
                 System.out.println("code="+code);
                 return code;
             } catch (IOException e) {
@@ -231,6 +249,34 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
 
         return null;
 
+        }
+
+    /**
+     * 获取会员名支付密码
+     * @param openid
+     * @return
+     */
+    private String getPayPassword(String openid){
+            String body = pointService.QueryVipByOpenid(openid);
+
+            try {
+                Map map = objectMapper.readValue(body, Map.class);
+                Integer code = (Integer) map.get("code");
+                System.out.println("code="+code);
+                if (code==0){
+                    Map jsondata = (Map) map.get("jsondata");
+                    String password = (String) jsondata.get("password");
+                    System.out.println("password="+password);
+                    return password;
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
+            return null;
         }
 
 
