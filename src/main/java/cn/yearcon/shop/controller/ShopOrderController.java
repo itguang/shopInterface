@@ -6,6 +6,7 @@ import cn.yearcon.shop.service.ShopOrderService;
 import cn.yearcon.shop.service.ShopShippingAddressService;
 import cn.yearcon.shop.utils.ShopResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,6 +70,30 @@ public class ShopOrderController {
         }
         return result;
     }
+
+
+    /**
+     * 根据收货地址id设置为默认收货地址
+     * @param addressId
+     * @return
+     */
+    @RequestMapping(value = "address/set-default-address/{addressId}")
+    public ShopResult setDefaultShopShippingAddress(@PathVariable(value = "addressId") String addressId){
+        ShopResult result = null;
+        try {
+            Integer i = shopShippingAddressService.setDefaultShopShippingAddress(addressId);
+            if (1==i){
+                result = new ShopResult(1,"OK");
+            }
+        } catch (Exception e) {
+            result = new ShopResult(0,"服务器忙");
+            e.printStackTrace();
+        }
+
+
+        return result;
+    }
+
 
     /**
      * 保存客户端提交的收货人地址数据

@@ -8,6 +8,7 @@ import cn.yearcon.shop.entity.ShopShippingAddress;
 import cn.yearcon.shop.mapper.common.CrudDao;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -45,10 +46,26 @@ public interface ShopShippingAddressMapper extends CrudDao<ShopShippingAddress> 
     List<ShopShippingAddress> getShopShippingAddressesByOpenid(@Param("openid") String openid);
 
 
+    /**
+     * 根据收货地址id 设置默认收货地址
+     * @param addressId
+     * @return
+     */
+    @Update("UPDATE shop_shipping_address a\n" +
+            "SET a.is_default = 1\n" +
+            "WHERE\n" +
+            "\ta.id = #{addressId}")
+    Integer setDefaultShopShippingAddress(String addressId);
 
+    /**
+     * 清空某个顾客下的默认收货地址
+     * @param customerId
+     * @return
+     */
+    @Update("UPDATE shop_shipping_address a\n" +
+            "SET a.is_default = 0\n" +
+            "WHERE\n" +
+            "\ta.customer_id = #{customerId}")
+    Integer clearDefaultAddress(String customerId);
 
-
-
-
-	
 }

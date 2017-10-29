@@ -73,5 +73,22 @@ public class ShopShippingAddressService extends CrudService<ShopShippingAddressM
 
     }
 
+    /**
+     * 根据收货地址id设置默认收货地址
+     * @param addressId
+     * @return
+     */
+    @Transactional
+    public Integer setDefaultShopShippingAddress(String addressId){
+
+        //把默认的收货地址去掉
+        ShopShippingAddress shopShippingAddress = shopShippingAddressMapper.get(addressId);
+        shopShippingAddressMapper.clearDefaultAddress(shopShippingAddress.getCustomerId());
+        //再设置默认地址
+        Integer i = shopShippingAddressMapper.setDefaultShopShippingAddress(addressId);
+        return i;
+
+    }
+
 
 }

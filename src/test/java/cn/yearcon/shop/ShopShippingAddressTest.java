@@ -2,6 +2,7 @@ package cn.yearcon.shop;
 
 import cn.yearcon.shop.entity.ShopShippingAddress;
 import cn.yearcon.shop.mapper.ShopShippingAddressMapper;
+import cn.yearcon.shop.service.ShopShippingAddressService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ import java.util.List;
 public class ShopShippingAddressTest {
     @Autowired
     ShopShippingAddressMapper shopShippingAddressMapper;
+
+    @Autowired
+    private ShopShippingAddressService shopShippingAddressService;
     @Test
     public void test1(){
         ShopShippingAddress shopShippingAddress = shopShippingAddressMapper.get("783f280e4acd4731ba89fe58d06dd397");
@@ -31,4 +35,13 @@ public class ShopShippingAddressTest {
         List<ShopShippingAddress> list = shopShippingAddressMapper.getShopShippingAddressesByOpenid("123");
         System.out.println(list.toString());
     }
+    @Test
+    public void test3(){
+        Integer i = shopShippingAddressService.setDefaultShopShippingAddress("e2c07696cc674922a94309c7cfcf93bb");
+        System.out.println(i);
+
+
+    }
+
+
 }
