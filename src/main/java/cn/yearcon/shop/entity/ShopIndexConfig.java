@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * 积分商城首页配置Entity
@@ -18,7 +19,7 @@ import javax.persistence.Id;
 
 @Entity
 @JsonIgnoreProperties(value = { "isIcon" })
-public class ShopIndexConfig {
+public class ShopIndexConfig implements Serializable {
 
     /**
      * id

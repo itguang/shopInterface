@@ -1,5 +1,6 @@
 package cn.yearcon.shop.controller;
 
+import cn.yearcon.shop.entity.ShopOrder;
 import cn.yearcon.shop.entity.ShopShippingAddress;
 import cn.yearcon.shop.pojo.OrderBean;
 import cn.yearcon.shop.service.ShopOrderService;
@@ -31,19 +32,20 @@ public class ShopOrderController {
     private ShopOrderService shopOrderService;
 
     /**
-     *生成订单
+     * 生成订单
+     *
      * @return
      */
     @RequestMapping(value = "order/save-order")
-    public ShopResult saveOrder(OrderBean orderBean){
+    public ShopResult saveOrder(OrderBean orderBean) {
         ShopResult result = null;
         try {
-            String orderId =   shopOrderService.saveOrder(orderBean);
+            String orderId = shopOrderService.saveOrder(orderBean);
             HashMap<String, String> map = new HashMap<>();
-            map.put("orderId",orderId);
+            map.put("orderId", orderId);
             result = new ShopResult(map);
         } catch (Exception e) {
-            result = new ShopResult(0,"服务器忙");
+            result = new ShopResult(0, "服务器忙");
             e.printStackTrace();
         }
 
@@ -51,21 +53,20 @@ public class ShopOrderController {
     }
 
 
-
-
     /**
      * 通过openid获取该用户的收货地址列表
+     *
      * @param openid
      * @return
      */
     @RequestMapping(value = "address/{openid}")
-    public ShopResult getShopShippingAddressesByOpenid(@PathVariable("openid") String openid){
-        ShopResult result=null;
+    public ShopResult getShopShippingAddressesByOpenid(@PathVariable("openid") String openid) {
+        ShopResult result = null;
         try {
             List<ShopShippingAddress> list = shopShippingAddressService.getShopShippingAddressesByOpenid(openid);
             result = new ShopResult(list);
         } catch (Exception e) {
-            result = new ShopResult(0,"服务器忙");
+            result = new ShopResult(0, "服务器忙");
             e.printStackTrace();
         }
         return result;
@@ -74,19 +75,20 @@ public class ShopOrderController {
 
     /**
      * 根据收货地址id设置为默认收货地址
+     *
      * @param addressId
      * @return
      */
     @RequestMapping(value = "address/set-default-address/{addressId}")
-    public ShopResult setDefaultShopShippingAddress(@PathVariable(value = "addressId") String addressId){
+    public ShopResult setDefaultShopShippingAddress(@PathVariable(value = "addressId") String addressId) {
         ShopResult result = null;
         try {
             Integer i = shopShippingAddressService.setDefaultShopShippingAddress(addressId);
-            if (1==i){
-                result = new ShopResult(1,"OK");
+            if (1 == i) {
+                result = new ShopResult(1, "OK");
             }
         } catch (Exception e) {
-            result = new ShopResult(0,"服务器忙");
+            result = new ShopResult(0, "服务器忙");
             e.printStackTrace();
         }
 
@@ -99,21 +101,21 @@ public class ShopOrderController {
      * 保存客户端提交的收货人地址数据
      */
     @RequestMapping(value = "address/save")
-    public ShopResult saveShopShippingAddress(ShopShippingAddress shippingAddress,HttpServletRequest request){
+    public ShopResult saveShopShippingAddress(ShopShippingAddress shippingAddress, HttpServletRequest request) {
 
         String openid = (String) request.getSession().getAttribute("openid");
 
-        ShopResult result=null;
+        ShopResult result = null;
 
         try {
             Integer i = shopShippingAddressService.saveShopShippingAddress(shippingAddress);
-            if (i==1){
-                result = new ShopResult(1,"OK");
-            }else {
-                result = new ShopResult(0,"添加地址失败");
+            if (i == 1) {
+                result = new ShopResult(1, "OK");
+            } else {
+                result = new ShopResult(0, "添加地址失败");
             }
         } catch (Exception e) {
-            result = new ShopResult(0,"服务器忙");
+            result = new ShopResult(0, "服务器忙");
             e.printStackTrace();
         }
 
@@ -122,22 +124,23 @@ public class ShopOrderController {
 
     /**
      * 更新客户端提交的收货人地址数据
+     *
      * @param shippingAddress
      * @return
      */
     @RequestMapping(value = "address/update")
-    public ShopResult updateShopShippingAddress(ShopShippingAddress shippingAddress, HttpServletRequest request){
+    public ShopResult updateShopShippingAddress(ShopShippingAddress shippingAddress, HttpServletRequest request) {
 
         ShopResult result = null;
         try {
             Integer i = shopShippingAddressService.updateShopShippingAddress(shippingAddress);
-            if(i==1){
-                result = new ShopResult(1,"OK");
-            }else {
-                result = new ShopResult(0,"修改地址失败");
+            if (i == 1) {
+                result = new ShopResult(1, "OK");
+            } else {
+                result = new ShopResult(0, "修改地址失败");
             }
         } catch (Exception e) {
-            result = new ShopResult(0,"服务器忙");
+            result = new ShopResult(0, "服务器忙");
             e.printStackTrace();
         }
 
@@ -146,22 +149,23 @@ public class ShopOrderController {
 
     /**
      * 删除收货人地址数据
+     *
      * @param id 收货人地址id
      * @return
      */
     @RequestMapping(value = "address/delete/{id}")
-    public ShopResult deleteShopShippingAddress(@PathVariable("id") String id){
+    public ShopResult deleteShopShippingAddress(@PathVariable("id") String id) {
 
         ShopResult result = null;
         try {
             Integer i = shopShippingAddressService.deleteShopShippingAddressById(id);
-            if(i==1){
-                result = new ShopResult(1,"OK");
-            }else {
-                result = new ShopResult(0,"删除失败");
+            if (i == 1) {
+                result = new ShopResult(1, "OK");
+            } else {
+                result = new ShopResult(0, "删除失败");
             }
         } catch (Exception e) {
-            result = new ShopResult(0,"服务器忙");
+            result = new ShopResult(0, "服务器忙");
             e.printStackTrace();
         }
 
@@ -170,33 +174,54 @@ public class ShopOrderController {
     }
 
     /**
-     *根据订单id和支付密码确认订单状态
+     * 根据订单id和支付密码确认订单状态
+     *
      * @param orderId
      * @param payPassword
      * @return
      */
     @RequestMapping("order/pay")
-    public ShopResult pay(@RequestParam("orderId") String orderId,@RequestParam("payPassword") String payPassword){
+    public ShopResult pay(@RequestParam("orderId") String orderId, @RequestParam("payPassword") String payPassword) {
         ShopResult result = null;
 
         try {
-            Integer code = shopOrderService.pay(orderId,payPassword);
-            if(code==1){
-                result = new ShopResult(1,"OK");
+            Integer code = shopOrderService.pay(orderId, payPassword);
+            if (code == 1) {
+                result = new ShopResult(1, "OK");
 
             }
-            if (code==2){
-                result = new ShopResult(0,"对不起,您的积分不足!");
+            if (code == 2) {
+                result = new ShopResult(0, "对不起,您的积分不足!");
 
             }
-            if(code==3){
-                result = new ShopResult(0,"支付密码错误!");
+            if (code == 3) {
+                result = new ShopResult(0, "支付密码错误!");
             }
-            if(code==4){
-                result = new ShopResult(0,"扣除积分失败!");
+            if (code == 4) {
+                result = new ShopResult(0, "扣除积分失败!");
             }
-            if (code==5){
-                result = new ShopResult(0,"支付失败,该订单不存在");
+            if (code == 5) {
+                result = new ShopResult(0, "支付失败,该订单不存在");
+            }
+        } catch (Exception e) {
+            result = new ShopResult(0, "服务器忙");
+            e.printStackTrace();
+        }
+
+        return result;
+
+    }
+
+
+    @RequestMapping(value = "order/getorder/{openid}")
+    public ShopResult findOrderListPaid(@PathVariable("openid") String openid) {
+        ShopResult result = null;
+        try {
+            List<ShopOrder> list = shopOrderService.findOrderListPaid(openid);
+            result = new ShopResult(list);
+            if(list==null){
+                result = new ShopResult(0,"未能找到相关订单信息");
+
             }
         } catch (Exception e) {
             result = new ShopResult(0,"服务器忙");
@@ -204,7 +229,26 @@ public class ShopOrderController {
         }
 
         return result;
-
     }
+
+
+    @RequestMapping(value = "order/kauidi/{openid}")
+    public ShopResult queryLastOrderByCustomerId(@PathVariable(value = "openid") String openid){
+        ShopResult result = null;
+        ShopOrder shopOrder = null;
+        try {
+            shopOrder = shopOrderService.queryLastOrderByCustomerId(openid);
+            result = new ShopResult(shopOrder);
+            if (shopOrder==null){
+                result = new ShopResult(0,"未能找到相关订单信息");
+            }
+        } catch (Exception e) {
+            result = new ShopResult(0,"服务器忙");
+            e.printStackTrace();
+        }
+
+
+        return result;
+    };
 
 }

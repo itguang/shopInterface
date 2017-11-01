@@ -2,16 +2,13 @@ package cn.yearcon.shop.dao.repository;
 
 
 import cn.yearcon.shop.entity.User;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-//对spring data jpa不熟的请私下去了解
+@CacheConfig(cacheNames = "shop")
 public interface UserRepository extends JpaRepository<User,String> {
 
-    //也可以按照spring data jpa 的规则,自定义方法
+    @Cacheable("test")
     User findByUserName(String userName);
-
-
-
-
-
 }

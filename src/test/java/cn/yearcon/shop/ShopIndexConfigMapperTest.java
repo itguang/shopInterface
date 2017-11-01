@@ -73,6 +73,16 @@ public class ShopIndexConfigMapperTest {
 
 
     }
+    @Test
+    public void test4(){
+        List<ShopIndexConfig> list = shopIndexConfigMapper.findTabMenu();
+
+        System.out.println(list.toString());
+
+
+    }
+
+
 
 
 }

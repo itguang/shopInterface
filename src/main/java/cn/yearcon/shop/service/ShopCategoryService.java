@@ -3,12 +3,14 @@ package cn.yearcon.shop.service;
 import cn.yearcon.shop.entity.ShopCategory;
 import cn.yearcon.shop.entity.ShopProduct;
 import cn.yearcon.shop.mapper.ShopCategoryMapper;
-import cn.yearcon.shop.mapper.ShopCustomerMapper;
 import cn.yearcon.shop.service.common.CrudService;
 import cn.yearcon.shop.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
@@ -30,6 +32,8 @@ public class ShopCategoryService extends CrudService<ShopCategoryMapper, ShopCat
      * 查询所有分类信息
      * @return
      */
+
+    @Cacheable(value = "category")
     public List<ShopCategory> getAllShopCategory() {
         List<ShopCategory> list = shopCategoryMapper.getAllShopCategory();
         return list;
@@ -42,6 +46,8 @@ public class ShopCategoryService extends CrudService<ShopCategoryMapper, ShopCat
      * @param pageSize 页大小
      * @return
      */
+
+    @Cacheable(value = "product")
     public List<ShopProduct> getShopProductByCategoryId(String id, int curPage, int pageSize) {
         int total = findCountByCategoryId(id);
         Page page = new Page(curPage, pageSize, total);

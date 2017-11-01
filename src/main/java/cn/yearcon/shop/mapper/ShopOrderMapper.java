@@ -6,6 +6,7 @@ package cn.yearcon.shop.mapper;
 
 import cn.yearcon.shop.entity.ShopOrder;
 import cn.yearcon.shop.mapper.common.CrudDao;
+import cn.yearcon.shop.utils.ShopResult;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -109,6 +110,26 @@ public interface ShopOrderMapper extends CrudDao<ShopOrder> {
             "\ta.customer_id = #{CustomerId}\n" +
             "AND a.pay_status = 1;")
     List<ShopOrder> queryPaidOrderListByCustomerId(String CustomerId);
+
+    /**
+     * 查找最近一笔订单的快递信息
+     * @param customerId
+     * @return
+     */
+    @Select("SELECT\n" +
+            "\ta.courier_company AS courierCompany,\n" +
+            "\ta.courier_number AS courierNumber\n" +
+            "FROM\n" +
+            "\tshop_order a\n" +
+            "WHERE\n" +
+            "\tpay_status = 1\n" +
+            "AND customer_id = #{customerId}\n" +
+            "ORDER BY\n" +
+            "\tpay_time DESC\n" +
+            "LIMIT 1;")
+    ShopOrder queryLastOrderByCustomerId(String customerId);
+
+
 
 	
 }

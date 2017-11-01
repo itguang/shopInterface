@@ -20,7 +20,7 @@ public class ShopCustomerController {
     private ShopCustomerService shopCustomerService;
 
     /**
-     * 根据openid设置支付密码
+     * 根据openid设置支付密码(不用)
      * @param payPassword 支付密码
      * @param openid openid
      * @return

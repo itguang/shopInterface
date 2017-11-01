@@ -6,6 +6,7 @@ import cn.yearcon.shop.service.ShopProductService;
 import cn.yearcon.shop.service.ShopProductSpecificationService;
 import cn.yearcon.shop.utils.ShopResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,7 @@ public class ShopProductController {
      * @return
      */
     @RequestMapping(value = "product/{id}")
+    @Cacheable(value = "product")
     public ShopResult getShopProductById(@PathVariable(value =                                                                                                                              "id") String id){
         ShopResult result;
         try {
@@ -55,6 +57,7 @@ public class ShopProductController {
      * @return
      */
     @RequestMapping(value = "product-specification/{id}")
+    @Cacheable(value = "product")
     public ShopResult getShopProductSpecificationById(@PathVariable(value = "id")String id){
         ShopResult result = null;
 

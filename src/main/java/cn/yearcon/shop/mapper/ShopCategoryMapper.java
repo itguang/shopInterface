@@ -9,6 +9,8 @@ import cn.yearcon.shop.entity.ShopProduct;
 import cn.yearcon.shop.mapper.common.CrudDao;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
@@ -17,6 +19,7 @@ import java.util.List;
  * @author itguang
  * @version 2017-10-20
  */
+
 public interface ShopCategoryMapper extends CrudDao<ShopCategory> {
 
 
@@ -32,6 +35,7 @@ public interface ShopCategoryMapper extends CrudDao<ShopCategory> {
             "\tshop_category a\n" +
             "ORDER BY\n" +
             "\ta.sort")
+
     List<ShopCategory> getAllShopCategory();
 
     /**

@@ -6,7 +6,9 @@ import cn.yearcon.shop.entity.ShopProduct;
 import cn.yearcon.shop.service.ShopIndexConfigService;
 import cn.yearcon.shop.service.ShopProductService;
 import cn.yearcon.shop.utils.ShopResult;
+import org.hibernate.annotations.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +40,7 @@ public class ShopIndexConfigController {
      * @return
      */
     @RequestMapping(value = "index/image")
+
     public ShopResult getimage(HttpServletResponse response) {
         ShopResult shopResult = null;
         List<ShopIndexConfig> lists = null;
@@ -45,7 +48,7 @@ public class ShopIndexConfigController {
             lists = shopIndexConfigService.getIndexImage();
             if (lists != null) {
                 shopResult = new ShopResult(1, "OK", lists);
-            }else {
+            } else {
                 shopResult = new ShopResult(1, "没有数据");
             }
         } catch (Exception e) {
@@ -58,6 +61,11 @@ public class ShopIndexConfigController {
         return shopResult;
     }
 
+    /**
+     * 获取首页新品数据
+     *
+     * @return
+     */
     @RequestMapping(value = "index/new-product")
 
     public ShopResult getIndexNewProduct() {
@@ -83,27 +91,47 @@ public class ShopIndexConfigController {
         return result;
     }
 
+    /**
+     * 获取首页分类
+     *
+     * @return
+     */
     @RequestMapping(value = "index/category")
-    public ShopResult getIndexCategory(){
-        ShopResult result=null;
+    public ShopResult getIndexCategory() {
+        ShopResult result = null;
 
         try {
             HashMap<String, List<ShopProduct>> map = shopIndexConfigService.findIndexCategory();
 
-            if(map!=null){
-                result  = new ShopResult(1, "OK", map);
-            }else {
-                result  = new ShopResult(1, "没有数据", map);
+            if (map != null) {
+                result = new ShopResult(1, "OK", map);
+            } else {
+                result = new ShopResult(1, "没有数据", map);
             }
 
         } catch (Exception e) {
-            result  = new ShopResult(0, "服务器忙");
+            result = new ShopResult(0, "服务器忙");
             e.printStackTrace();
         }
         System.out.println(result.toString());
 
         return result;
 
+    }
+
+
+    @RequestMapping(value = "index/tab")
+    public ShopResult getTabMenu() {
+        ShopResult result = null;
+        try {
+            List<ShopIndexConfig> list = shopIndexConfigService.findTabMenu();
+            result = new ShopResult(list);
+        } catch (Exception e) {
+            result = new ShopResult(0,"服务器忙");
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
 

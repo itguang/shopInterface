@@ -1,5 +1,6 @@
 package cn.yearcon.shop.utils;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  * @author itguang
  * @create 2017-10-21 15:44
  **/
-public class Page {
+public class Page  implements Serializable{
 
     /**
      *

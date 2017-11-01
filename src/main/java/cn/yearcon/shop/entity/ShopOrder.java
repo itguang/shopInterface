@@ -5,6 +5,7 @@ package cn.yearcon.shop.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -14,7 +15,7 @@ import java.util.Date;
  * @version 2017-10-20
  */
 @Entity//要使用spring data jpa 要在实体类上加上此注解
-public class ShopOrder  {
+public class ShopOrder implements Serializable {
 	/**
 	 * 订单id
 	 */

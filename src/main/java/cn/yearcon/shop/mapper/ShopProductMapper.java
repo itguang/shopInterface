@@ -39,7 +39,7 @@ public interface ShopProductMapper extends CrudDao<ShopProduct> {
             "\tis_new = 1\n" +
             "ORDER BY\n" +
             "\tsort_no\n" +
-            "LIMIT 6;")
+            "LIMIT #{size};")
     List<ShopProduct> findIsNew(Integer size);
 
     /**

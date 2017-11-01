@@ -54,5 +54,30 @@ public interface ShopIndexConfigMapper extends CrudDao<ShopIndexConfig> {
     List<ShopCategory> findAllCategory();
 
 
+
+    @Select("SELECT\n" +
+            "\t*\n" +
+            "FROM\n" +
+            "\tshop_index_config\n" +
+            "WHERE\n" +
+            "\ttype = 2;")
+    List<ShopIndexConfig> findINdexMenu();
+
+
+    @Select("SELECT\n" +
+            "\t*\n" +
+            "FROM\n" +
+            "\tshop_index_config\n" +
+            "WHERE\n" +
+            "\ttype = 3\n" +
+            "ORDER BY sort")
+    List<ShopIndexConfig> findTabMenu();
+
+
+
+
+
+
+
 	
 }

@@ -6,6 +6,7 @@ package cn.yearcon.shop.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * 基础设置Entity
@@ -13,7 +14,7 @@ import javax.persistence.Id;
  * @version 2017-10-20
  */
 @Entity//要使用spring data jpa 要在实体类上加上此注解
-public class ShopConfig  {
+public class ShopConfig implements Serializable {
 
 	@Id
 	private String id;

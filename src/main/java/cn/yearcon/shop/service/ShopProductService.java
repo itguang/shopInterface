@@ -8,6 +8,7 @@ import cn.yearcon.shop.service.common.CrudService;
 
 import cn.yearcon.shop.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,8 +36,9 @@ public class ShopProductService extends CrudService<ShopProductMapper,ShopProduc
      * @param size 查找新品数据的数量,
      * @return  List<ShopProduct>
      */
+    @Cacheable("product")
     public List<ShopProduct> findIsNew(Integer size){
-        List<ShopProduct> list = shopProductMapper.findIsNew(size);
+        List<ShopProduct> list = shopProductMapper.findIsNew(5);
         return list;
     }
 
@@ -45,12 +47,12 @@ public class ShopProductService extends CrudService<ShopProductMapper,ShopProduc
      * @param id
      * @return
      */
+
     public ShopProduct findShopProductByid(String id){
         ShopProduct shopProduct = shopProductMapper.findShopProductByid(id);
         //商品访问量+1
         incrementShopProductVisits(id);
         return shopProduct;
-
     }
 
     /**

@@ -1,6 +1,7 @@
 package cn.yearcon.shop.utils;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * @author itguang
  * @create 2017-10-20 8:56
  **/
-public class PageResult<T> {
+public class PageResult<T> implements Serializable{
     /**
      * 页数
      */

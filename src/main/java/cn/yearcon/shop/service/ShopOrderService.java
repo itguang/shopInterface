@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.Id;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -280,6 +281,32 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
         }
 
 
+    /**
+     * 通过openid查找已付款订单
+     * @param openid
+     * @return
+     */
+        public List<ShopOrder> findOrderListPaid(String openid){
+            ShopCustomer customer = shopCustomerService.findUniqueByOPenid(openid);
+            String cusTomerID = customer.getId();
+
+            List<ShopOrder> list = shopOrderMapper.queryPaidOrderListByCustomerId(cusTomerID);
+            return list;
+
+
+        }
+
+    /**
+     * 查找最近一笔订单的快递信息
+     * @param openid
+     * @return
+     */
+    public ShopOrder queryLastOrderByCustomerId(String openid){
+        ShopCustomer shopCustomer = shopCustomerService.findUniqueByOPenid(openid);
+
+        ShopOrder shopOrder = shopOrderMapper.queryLastOrderByCustomerId(shopCustomer.getId());
+        return shopOrder;
+    }
 
 
 

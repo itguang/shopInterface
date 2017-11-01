@@ -3,6 +3,7 @@ package cn.yearcon.shop.utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @author itguang
  * @create 2017-10-19 15:37
  **/
-public class ShopResult {
+public class ShopResult implements Serializable {
     /**
      *响应业务状态
      */
