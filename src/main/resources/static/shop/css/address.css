@@ -1,0 +1,90 @@
+ header {
+     height: 3.5rem;
+     background-color: #4CAF50;
+ }
+ header p {
+     font-size: 1.3rem;
+     margin-top: 0.05rem;
+     color:#fff;
+ }
+ .iconfont {
+     font-size: 2rem !important;
+     padding-left: 1rem;
+ }
+ 
+
+
+ .address-list {
+     margin: 20px 3%;
+     color: #666;
+     padding-bottom: 20px;
+ }
+ 
+ .address-list li {
+     border-radius: 5px;
+     border: 1px solid #ddd;
+     padding: 10px 0px;
+     margin-bottom: 20px;
+ }
+ 
+ .address-list .curr {
+     border: 1px solid #cc6916;
+ }
+ 
+ .address-list li p {
+     padding: 2px 20px;
+ }
+ 
+ .order-add1 {
+     color: #bbb;
+ }
+ 
+ .address-list hr {
+     margin: 10px 0;
+     border-color: rgba(158, 158, 158, 0.13);
+ }
+ 
+ .address-cz {
+     overflow: hidden;
+     padding: 0 20px;
+     color: #bbb;
+ }
+ 
+ .address-cz a {
+     color: #bbb;
+ }
+ 
+ .address-cz label {
+     float: left;
+     margin: 0;
+ }
+ 
+ .address-cz a {
+     float: left;
+     width: 30%;
+     text-align: right;
+ }
+ 
+ .order-detail {
+     padding: 1rem;
+     background: #eee;
+     border-bottom: 1px solid #ddd;
+     color: #666;
+     font-size: 1.6rem;
+ }
+ 
+ .pay-style label {
+     float: left;
+     width: 30%;
+ }
+ 
+ .pay-style {
+     overflow: hidden;
+     margin: 0 5%;
+     padding-bottom: 20px;
+ }
+ 
+ .pay-style-box {
+     font-size: 1.8rem;
+     margin: 20px 0 0px 5%;
+ }

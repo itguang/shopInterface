@@ -1,0 +1,90 @@
+/*头部购物车*/
+.mui-bar-nav .btn span {
+    display: block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    background-color: #00cc7d;
+    color: #fff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    position: absolute;
+    top: .15rem;
+    right: -.2rem;
+    font-size: .5em;
+}
+/*商品区域*/
+.lists {
+    width: 100%;
+}
+
+.lists .top {
+    width: 100%;
+    height: 1.5rem;
+    background-color: #fff;
+}
+
+.lists .top ul li {
+    width: 33.333%;
+    text-align: center;
+    line-height: 1.5rem;
+    float: left;
+    color: #666666;
+    font-size: .4rem;
+}
+
+.lists .bottom {
+    width: 100%;
+    margin-top: 3%;
+}
+
+.lists .bottom .lie {
+    width: 100%;
+    margin-bottom: 2%;
+    background-color: #fff;
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    padding: .4rem .2rem;
+}
+
+.lists .bottom .lie .tu {
+    width: 25%;
+    text-align: center;
+}
+
+.lists .bottom .lie .tu img {
+    max-width: 100%;
+}
+
+.lists .bottom .lie .right {
+    width: 72%;
+    margin-left: 3%;
+}
+
+.lists .bottom .lie .right .tit {
+    color: #333333;
+    font-size: .45rem;
+    line-height: .6rem;
+}
+
+.lists .bottom .lie .right .xia {
+    height: .8rem;
+    line-height: .8rem;
+    width: 100%;
+}
+
+.lists .bottom .lie .right .jifen {
+    width: 80%;
+    color: #fc8f00;
+    font-size: .45rem;
+}
+
+.lists .bottom .lie .right span {
+    width: .6rem;
+    height: .6rem;
+}
+
+.lists .bottom .lie .right span img {
+    width: 100%;
+}

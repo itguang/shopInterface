@@ -1,0 +1,70 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=0.5, minimum-scale=1.0, maximum-scale=1.0">
+<meta content="no" name="apple-mobile-web-app-capable" />
+<meta content="false" id="twcClient" name="twcClient" />
+	
+<title>线下活动报名</title> 
+<link rel="stylesheet" type="text/css" href="css/common.css">
+
+
+
+
+</head>
+
+
+<body>
+		
+	<div style="height:10px;"></div>
+		
+	<div class="hot-tj-title">
+		<p>线下活动报名</p>
+	</div>
+	
+	<div class="creat-box">
+		<ul>
+			<li>
+				<div class="creat-box-l">姓名：</div>
+				<div class="creat-box-r"><input type="text" name="" value=""  placeholder="请填写真实姓名"></div>
+			</li>
+			<li>
+				<div class="creat-box-l">手机号：</div>
+				<div class="creat-box-r"><input type="text" name="" value=""  placeholder="请填写正确的手机号码"></div>
+			</li>
+		</ul>
+		
+		<div class="clear"></div>
+		
+		<div class="creat-btn">
+			<button>确认提交</button>
+		</div>
+		
+		<div class="sMing">
+			<p class="sMing-title">友情提醒</p>
+			<p>
+			请务必填写您的真实有效的信息，<br>
+			以便我们与您联系活动事宜。
+			</p>
+		</div>
+		
+	</div>
+	
+	
+
+		
+		
+
+
+		<div style="height:50px;"></div>
+
+</body>
+</html>

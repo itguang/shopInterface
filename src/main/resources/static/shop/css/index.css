@@ -1,0 +1,213 @@
+
+/*banner区域*/
+.banner img {
+    display: block;
+    width: 100%;
+}
+/*第一栏分类*/
+.cation {
+    width: 100%;
+    background-color: #fff;
+    padding: 4% 2%;
+}
+
+.cation ul li {
+    width: 25%;
+    text-align: center;
+    float: left;
+}
+
+.cation ul li img {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.cation ul li p {
+    color: #666666;
+    font-size: .45rem;
+    margin-bottom: 0;
+}
+/*精品任选*/
+.boutique,
+.onnew {
+    width: 100%;
+    padding: 0 2%;
+}
+
+.boutit {
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+    height: 1.2rem;
+    text-align: center;
+}
+
+.boutit span {
+    display: block;
+    position: absolute;
+    top: .55rem;
+    width: 100%;
+    border-top: 3px solid #00cc7d;
+}
+
+.boutit samp {
+    line-height: 1.2rem;
+    color: #000000;
+    position: relative;
+    height: 1.2rem;
+    padding: 0 3%;
+    background-color: #efeff4;
+    font-size: .45rem;
+}
+
+.boutique .content,
+.onnew .content {
+    width: 100%;
+}
+
+.boutique .content ul li {
+    width: 100%;
+    margin-bottom: 3%;
+}
+
+.boutique .content ul li:last-child {
+    margin-bottom: 0;
+}
+
+.boutique .content ul li img {
+    width: 100%;
+}
+/*精品推荐*/
+.onnew .text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.red {
+    color: red;
+    font-weight: 600;
+}
+.onnew .content .top .list .zuo .tit,
+.onnew .content .bottom .list .shang .tit,
+.theme .content .list .shang .tit {
+    color: #000000;
+    font-size: .3rem;
+    width: 100%;
+    margin-bottom: 0;
+
+}
+.onnew .content .top .list .zuo span,
+.onnew .content .bottom .list .shang span,
+.theme .content .list .shang span {
+    font-size: .3rem;
+    width: 100%;
+}
+.onnew .content .top {
+    width: 100%;
+}
+
+.onnew .content .top .list {
+    width: 49%;
+    padding: 3% 2% 0;
+    margin-right: 2%;
+    background-color: #fff;
+}
+
+.onnew .content .top .list:last-child {
+    margin-right: 0;
+}
+
+.onnew .content .top .list .zuo {
+    width: 60%;
+}
+
+.onnew .content .top .list .tu {
+    width: 40%;
+    height: 2.5rem;
+    font-size: 0;
+    text-align: center;
+}
+
+.onnew .content .top .list .tu span {
+    display: inline-block;
+    height: 100%;
+    line-height: 0;
+    vertical-align: middle;
+}
+
+.onnew .content .top .list .tu img {
+    max-width: 100%;
+    vertical-align: middle;
+    max-height: 2.5rem;
+}
+
+.onnew .content .bottom {
+    width: 100%;
+    margin-top: 2%;
+}
+
+.onnew .content .bottom .list {
+    width: 32%;
+    height: 4rem;
+    margin-right: 2%;
+    background-color: #fff;
+}
+
+.onnew .content .bottom .list:last-child {
+    margin-right: 0;
+}
+
+.onnew .content .bottom .list .shang {
+    padding: 5%;
+    width: 100%;
+    height: 1.2rem;
+}
+/*1-5F*/
+.onnew .content .bottom .list .tu,
+.theme .content .list .tu {
+    width: 100%;
+    height: 2.8rem;
+    text-align: center;
+    font-size: 0;
+}
+
+.onnew .content .bottom .list .tu span,
+.theme .content .list .tu span {
+    display: inline-block;
+    height: 100%;
+    line-height: 0;
+    vertical-align: middle;
+}
+
+.onnew .content .bottom .list .tu img,
+.theme .content .list .tu img {
+    max-width: 100%;
+    vertical-align: middle;
+    max-height: 2.8rem;
+}
+
+.theme {
+    width: 100%;
+}
+
+.theme .content {
+    width: 100%;
+    background-color: #fff;
+}
+
+.theme .content .list {
+    width: 33.33%;
+    height: 4.5rem;
+    border-right: 1px solid #f1f1f1;
+    float: left;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.theme .content .list .shang {
+    padding: 8% 5% 5%;
+    width: 100%;
+}
+
+.theme .content .list:nth-child(3n) {
+    border-right: none;
+}

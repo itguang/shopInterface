@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=0.5, minimum-scale=1.0, maximum-scale=1.0">
+<meta content="no" name="apple-mobile-web-app-capable" />
+<meta content="false" id="twcClient" name="twcClient" />
+
+
+
+<link rel="stylesheet" type="text/css" href="css/common.css">
+
+<title>线下活动报名</title>
+</head>
+
+<body>
+	<div class="container">
+	
+		
+		
+		
+		
+		
+		
+		<div style="height:10px;"></div>
+		
+		<div class="hot-tj-title">
+			<p>分享赚积分</p>
+		</div>
+		
+		<div class="share-rule">
+			<p class="share-rule-title">活动报名</p>
+			<p> 1、报名规则：</p>
+			<p>2、其他说明：</p>
+		</div>
+		
+		<div class="share-rw-box">
+			<ul>
+				<li>
+					<a href="index5-3-1.html">
+						<div class="news-img">
+							<img src="img/index5-2/1.jpg" width="100%" />
+						</div>
+						<div class="news-info-box">
+							<p class="news-title">线下活动一</p>
+							<p class="news-detail">这里是活动详情，这里是活动详情，这里是活动详情，这里是活动详情，这里是活动详情</p>
+							<p class="zjf-btn">报名</p>
+							<div class="clear"></div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="index5-3-1.html">
+						<div class="news-img">
+							<img src="img/index5-2/1.jpg" width="100%" />
+						</div>
+						<div class="news-info-box">
+							<p class="news-title">线下活动二</p>
+							<p class="news-detail">这里是活动详情，这里是活动详情</p>
+							<p class="zjf-btn">报名</p>
+							<div class="clear"></div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="index5-3-1.html">
+						<div class="news-img">
+							<img src="img/index5-2/1.jpg" width="100%" />
+						</div>
+						<div class="news-info-box">
+							<p class="news-title">线下活动三</p>
+							<p class="news-detail">这里是活动详情，这里是活动详情，这里是活动详情，这里是活动详情</p>
+							<p class="zjf-btn">报名</p>
+							<div class="clear"></div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		
+		<div class="back-btn">
+			<a href="javascript:history.go(-1);">返回上一页</a>
+		</div>
+		
+	
+		<div class="copyright">
+			<p>&copy;技术支持：<a href="http://www.ruixinhudong.com">摩尔国际 | 睿信互动</a></p>
+		</div>
+	
+		<div class="height50"></div>
+	
+	
+		
+		
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>确认订单</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="css/confirm.css"/>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/loaders.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/loading.css"/>
+	<script src="js/rem.js"></script> 
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/mui.min.js"></script>
+	<script type="text/javascript">
+		sessionStorage.url = "confirm";
+		$(window).load(function(){
+			$(".loading").addClass("loader-chanage")
+			$(".loading").fadeOut(300)
+		})
+	</script>
+    <style type="text/css">
+        .footerone .right .btn {
+            display: block;
+            width: 100%;
+            height: 1.3rem;
+            text-align: center;
+            line-height: 1.3rem;
+            background-color: #ff9100;
+            color: #fff;
+            font-size: .5rem;
+        }
+
+        .warptwo {
+            padding-bottom: 0rem;
+        }
+
+        .footerone {
+            width: 100%;
+            border-top: 1px solid #e6e6e6;
+            height: 1.3rem;
+            background-color: #fff;
+            position: fixed;
+            bottom: 0rem;
+            left: 0;
+        }
+        .settlement {
+    width: 100%;
+    height: 1.8rem;
+    position: fixed;
+    bottom: 0rem;
+    border-top: 1px solid #f4f4f4;
+    background-color: #fff;
+}
+    </style>
+    <script src="ajax/confirm.js"></script>
+</head>
+<!--loading页开始-->
+<div class="loading">
+	<div class="loader">
+        <div class="loader-inner pacman">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+	</div>
+</div>
+<!--loading页结束-->
+	<body>
+		<!--header star-->
+		<!--<header class="mui-bar mui-bar-nav" id="header">
+			<a class="btn" href="javascript:history.go(-1)">
+	            <i class="iconfont icon-fanhui"></i>
+	        </a>
+	        <div class="top-sch-box top-sch-boxtwo flex-col">
+	                      确认订单
+	        </div>
+	    </header>-->
+	    <!--header end-->
+	    
+	    <div class="warp warptwo clearfloat">
+	    	<div class="confirm clearfloat">
+	    		<div class="add clearfloat box-s">
+	    			<a href="#" id="editAddress">
+		    			<div class="left clearfloat fl">
+		    				<i class="iconfont icon-dizhi1"></i>
+		    			</div>
+		    			<div class="middle clearfloat fl">
+		    				<p class="tit">
+		    					收货人：<span id="receiveName"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+		    								<span id="mobile"></span>
+		    				</p>
+		    				<p class="fu-tit over2">
+		    					收货地址：
+		    					<pan id="defaultAddress"></pan>
+		    				</p>
+		    			</div>
+		    			<div class="left clearfloat fr">
+		    				<i class="iconfont icon-jiantou1"></i>
+		    			</div>
+	    			</a>
+	    		</div>
+	    		<div class="lie clearfloat">
+					<a href="detail.html">
+						<div class="tu clearfloat fl" >
+							<img src="images/xj.jpg" id="pictureUrlDefault"/>
+						</div>
+					</a>
+					<div class="right clearfloat fl">
+						<a href="detail.html">
+							<p class="tit over" id="nameAndDescription"></p>
+							<p class="fu-tit" id="colorAndSize"></p>
+						</a>
+						<div class="xia clearfloat">
+							<a href="#" id="productInfo">
+								<p class="jifen fl over" id="needIntegration"></p>
+							</a>
+							<span class="fr db">×1</span>
+						</div>
+					</div>
+				</div>
+				<div class="gmshu clearfloat box-s fl">
+					<div class="gcontent clearfloat">
+						<p class="fl">购买数量</p>
+			     		<div class="you clearfloat fr">
+			     			<ul>
+			     				<li><img src="images/jian.jpg"/></li>
+			     				<li id="count"></li>
+			     				<li><img src="images/jia.jpg"/></li>
+			     			</ul>
+			     		</div>
+					</div>		     		
+		     	</div>
+		     	<div class="gmshu gmshutwo clearfloat box-s fl">
+					<div class="gcontent clearfloat">
+						<p class="fl">配送方式</p>
+			     		<div class="you clearfloat fr">
+			     			<span>快递 免邮</span>
+			     			<i class="iconfont icon-jiantou1"></i>
+			     		</div>
+					</div>		     		
+		     	</div>
+		     	<div class="gmshu gmshutwo clearfloat box-s fl">
+					<div class="gcontent clearfloat">
+						<p class="fl">发票信息</p>
+			     		<div class="you clearfloat fr">
+			     			<div class="xuan clearfloat">
+			     				<div class="radiotwo" > 
+								    <label>
+								        <input type="radio" name="fapiao" value="需要发票" />
+								        <div class="option"></div>
+								        <span class="opt-text">需要发票</span>
+								    </label>
+								</div>
+			     			</div>
+		    				<div class="xuan clearfloat">
+			     				<div class="radiotwo" > 
+								    <label>
+								        <input type="radio" name="fapiao" value="不需要发票" checked/>
+								        <div class="option"></div>
+								        <span class="opt-text">不需要发票</span>
+								    </label>
+								</div>
+			     			</div>
+			     		</div>
+					</div>		     		
+		     	</div>
+		     	<div class="gmshu gmshuthree clearfloat box-s fl">
+					<div class="gcontent clearfloat">
+						<p class="fl">买家留言</p>
+			     		<div class="you clearfloat fl">
+			     			<input type="text" name="" id="remarkBuyer" value="" class="text" placeholder="选填 对本次交易需求给商家留言" />
+			     		</div>
+					</div>	
+					<div class="gcontent clearfloat">
+						<p class="fl">发票抬头</p>
+			     		<div class="you clearfloat fl">
+			     			<input type="text" name="" id="invoiceTitle" value="" class="text" placeholder="选填 购物人名称" />
+			     		</div>
+					</div>		     		
+		     	</div>
+		     	<!--<div class="gmshu clearfloat box-s fl">
+					<p class="fr">共<samp id=""></samp> 件商品   合计<samp></samp></p>	     		
+		     	</div>-->
+		     	
+	    	</div>
+	    </div>	    
+	    
+		<!--settlement star-->
+	    <div class="settlement clearfloat">
+	    	<div class="zuo clearfloat fl box-s">
+	    		共<span id="counts">1</span>件  总积分：<span id="sumIntegration">100000</span>
+	    	</div>
+	    	<a href="#" class="fl db" id="submitOrder">
+	    		提交订单
+	    	</a>
+	    </div>
+	    <!--settlement end-->
+	    
+		<!--footer star-->
+	    <!--<footer class="page-footer fixed-footer" id="footer">
+			<ul>
+				<li>
+					<a href="index.html">
+						<i class="iconfont icon-shouye"></i>
+						<p>首页</p>
+					</a>
+				</li>
+				<li>
+					<a href="cation.html">
+						<i class="iconfont icon-icon04"></i>
+						<p>分类</p>
+					</a>
+				</li>
+				<li class="active">
+					<a href="shopcar.html">
+						<i class="iconfont icon-gouwuche"></i>
+						<p>购物车</p>
+					</a>
+				</li>
+				<li>
+					<a href="center.html">
+						<i class="iconfont icon-yonghuming"></i>
+						<p>我的</p>
+					</a>
+				</li>
+			</ul>
+		</footer>-->
+		<!--footer end-->
+	</body>
+	
+</html>

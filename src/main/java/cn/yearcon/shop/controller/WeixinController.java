@@ -23,6 +23,7 @@ import java.util.Map;
  * @author itguang
  */
 @RestController
+@RequestMapping(value = "shop/")
 public class WeixinController {
 
     @Autowired
@@ -46,7 +47,7 @@ public class WeixinController {
     String pointShopIndex;
 
 
-    @RequestMapping(value = {"", ""})
+    @RequestMapping(value = "weixin")
     public String weixinLogin(HttpServletRequest request, HttpServletResponse response) {
 
         //从数据库获取 weixin.appid 和 weixin.secret
@@ -85,6 +86,7 @@ public class WeixinController {
             response.addCookie(cookie);
             //重定向到商城首页
             response.sendRedirect(pointShopIndex);
+            System.out.println("pointShopIndex="+pointShopIndex);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -102,6 +104,7 @@ public class WeixinController {
         Cookie cookie = new Cookie("openid", openid);
         //cookie有效期一年
         cookie.setMaxAge(60 * 60 * 24 * 365);
+//        cookie.setDomain("dsjfcrm.yearcon.com");
 
         HttpSession session = request.getSession();
         //往session里设置openid
@@ -118,7 +121,7 @@ public class WeixinController {
      * @return openid
      */
     private String getOpenidByCode(String code) {
-        //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1642c5a5400c82e2&redirect_uri=http://www.yearcontest.com&response_type=code&scope=snsapi_userinfo&#wechat_redirect
+        //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1642c5a5400c82e2&redirect_uri=http://dsjfcrm.yearcon.com/shop/weixin&response_type=code&scope=snsapi_userinfo&#wechat_redirect
         String url = "https://api.weixin.qq.com/sns/oauth2/access_token";
         HashMap<String, Object> map = new HashMap(16);
 

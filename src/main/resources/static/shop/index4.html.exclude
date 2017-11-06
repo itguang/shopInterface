@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=0.5, minimum-scale=1.0, maximum-scale=1.0">
+<meta content="no" name="apple-mobile-web-app-capable" />
+<meta content="false" id="twcClient" name="twcClient" />
+
+
+
+<title>个人中心</title>
+
+<link rel="stylesheet" type="text/css" href="css/common.css">
+
+</head>
+
+<body>
+
+
+<div class="hj-gundong-top">
+	<marquee direction="left">
+		皮卡丘积分兑换得<span>20元现金抵用券</span>；
+		蓝胖子积分兑换得<span>200元代金券</span>；
+	</marquee>
+</div>
+
+
+<div class="personal-box">
+			
+			<div class="per-box-l">
+				<div class="tx-box">
+					<img src="img/index1/game1.jpg" width="43" height="43" />
+				</div>
+				<div class="nicheng-box">
+					<p class="nicheng">哆啦A梦哆啦A梦</p>
+					<div class="zjifen">
+						<p><span class="jifen-icon"><img src="img/index1/jifen.png" width="20" height="20" /></span><span class="jifen-txt">1800积分</span></p>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="per-box-r">
+				<div class="logo">
+					<img src="img/index1/logo.png" width="100%" />
+				</div>
+			</div>
+			
+			<div class="clear"></div>
+			
+		</div>
+
+<div class="personal-part2">
+	<ul>
+		<li>
+			<a href="index6-1.html">积分详细</a>
+		</li>
+		<li>
+			<a href="index6-2.html">兑换记录</a>
+		</li>
+		<li>
+			<a href="rule.html">兑换规则</a>
+		</li>
+	</ul>
+</div>
+
+
+
+<div style="height:30px;"></div>
+
+
+
+
+<div class="personal-part3">
+	<ul>
+		<li>
+			<a href="#"><img src="img/index1/icon2.png" width="20" />我的奖品<div class="clear"></div></a>
+		</li>
+		<li>
+			<a href="#"><img src="img/index1/icon3.png" width="20" />商家优惠公告<div class="clear"></div></a>
+		</li>
+		<div class="clear"></div>
+	</ul>
+</div>
+
+
+<div class="height50"></div>
+	
+<div class="btm-btn-box">
+			<div class="biankuang"></div>
+			<ul>
+				<li>
+					<a href="index1.html">
+						<div class="link-icon">
+							<img src="img/index1/index.png" width="100%" />
+						</div>
+						<div class="link-txt">
+							<p>首页</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="index2.html">
+						<div class="link-icon">
+							<img src="img/index1/icon2.png" width="100%" />
+						</div>
+						<div class="link-txt">
+							<p>兑奖公布</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="rule.html">
+						<div class="link-icon">
+							<img src="img/index1/sM.png" width="100%" />
+						</div>
+						<div class="link-txt">
+							<p>积分规则</p>
+						</div>
+					</a>
+				</li>
+				<li class="active">
+					<a href="index4.html">
+						<div class="link-icon">
+							<img src="img/index1/icon4-active.png" width="100%" />
+						</div>
+						<div class="link-txt">
+							<p>我的账户</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+</body>
+</html>

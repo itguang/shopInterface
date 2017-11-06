@@ -36,6 +36,15 @@ public class ShopOrderTest {
         System.out.println(shopOrder.toString());
 
     }
+    @Test
+    public void test3(){
+            ShopOrder shopOrder = shopOrderService.findOederById("39d31cc847a94f2598be3fb31860a7ba");
+        System.out.println(shopOrder.toString());
+
+    }
+
+
+
 
 
 

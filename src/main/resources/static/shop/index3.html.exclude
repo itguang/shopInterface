@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=0.5, minimum-scale=1.0, maximum-scale=1.0">
+<meta content="no" name="apple-mobile-web-app-capable" />
+<meta content="false" id="twcClient" name="twcClient" />
+
+<title>游戏结果</title>
+
+<link rel="stylesheet" type="text/css" href="css/common.css">
+
+</head>
+
+<body>
+
+
+<div class="hj-gundong-top">
+	<marquee direction="left">
+		皮卡丘积分兑换得<span>20元现金抵用券</span>；
+		蓝胖子积分兑换得<span>200元代金券</span>；
+	</marquee>
+</div>
+
+
+
+<div class="rule-box">
+	<div class="rule-title">
+		<p>游戏结果</p>
+	</div>
+	<div class="result-box">
+		<p>您本次游戏获得积分：2000</p>
+	</div>
+</div>
+
+
+<div class="back-index1">
+	<a href="index1.html">返回首页</a>
+</div>
+
+<div class="back-btn">
+	<a href="#">再玩一次</a>
+</div>
+
+<div class="height50"></div>
+	
+		
+</body>
+</html>

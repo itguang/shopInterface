@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=0.5, minimum-scale=1.0, maximum-scale=1.0">
+<meta content="no" name="apple-mobile-web-app-capable" />
+<meta content="false" id="twcClient" name="twcClient" />
+
+<title>游戏规则</title>
+
+<link rel="stylesheet" type="text/css" href="css/common.css">
+
+</head>
+
+<body>
+
+
+<div class="hj-gundong-top">
+	<marquee direction="left">
+		皮卡丘积分兑换得<span>20元现金抵用券</span>；
+		蓝胖子积分兑换得<span>200元代金券</span>；
+	</marquee>
+</div>
+
+<div class="rule-box">
+	<div class="rule-title">
+		<p>游戏规则</p>
+	</div>
+	<div class="rule-txt-box">
+		<p>签到规则：</p>
+		<p>1、每次得20积分，连续签到5天额外奖励30积分；</p>
+		<p>2、连续签到10天额外奖励40积分</p>
+		<p>3、连续签到20天额外奖励50积分</p><br />
+		
+		<p>美丽一点规则：</p>
+		<p>参与既有机会获得优惠券（15元、10元、5元随机）或者积分（10积分、20积分、30积分随机）</p><br />
+		
+		<p>天使会员规则：</p>
+		<p>累计获得2000积分即可成为天使会员</p>
+		<p>天使会员特权：凡是天使会员可在出新产品时优先免费参与体验，并回馈体验报告，其余特权敬请期待</p>
+	</div>
+</div>
+
+<div class="height50"></div>
+	
+		<div class="btm-btn-box">
+			<div class="biankuang"></div>
+			<ul>
+				<li>
+					<a href="index1.html">
+						<div class="link-icon">
+							<img src="img/index1/index.png" width="100%" />
+						</div>
+						<div class="link-txt">
+							<p>首页</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="index2.html">
+						<div class="link-icon">
+							<img src="img/index1/icon2.png" width="100%" />
+						</div>
+						<div class="link-txt">
+							<p>兑奖公布</p>
+						</div>
+					</a>
+				</li>
+				<li class="active">
+					<a href="rule.html">
+						<div class="link-icon">
+							<img src="img/index1/sM2.png" width="100%" />
+						</div>
+						<div class="link-txt">
+							<p>积分规则</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="index4.html">
+						<div class="link-icon">
+							<img src="img/index1/icon4.png" width="100%" />
+						</div>
+						<div class="link-txt">
+							<p>我的账户</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+</body>
+</html>

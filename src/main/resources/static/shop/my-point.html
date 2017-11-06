@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<title>个人中心</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/loaders.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/loading.css" />
+		<link rel="stylesheet" type="text/css" href="css/myhome1.01.css">
+		<link rel="stylesheet" type="text/css" href="my/css/list.css" charset="utf-8">
+
+		<script src="js/jquery.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(window).load(function() {
+				$(".loading").addClass("loader-chanage");
+				$(".loading").fadeOut(300);
+
+			})
+		</script>
+		
+	</head>
+	<!--loading页开始-->
+	<div class="loading">
+		<div class="loader">
+			<div class="loader-inner pacman">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+	</div>
+	<!--loading页结束-->
+
+	<body id="body">
+		<a name="top"></a>
+		<header>
+
+		</header>
+
+		<style type="text/css">
+			.current-half-width li {
+				width: 50% !important;
+			}
+		</style>
+
+		<div class="common-wrapper">
+
+			<div class="head-img" style="margin-bottom: 5px;">
+				<span class="my-img" style="background-image:url('images/defaul.png')"></span>
+				<!--<p style="color: #F7F7F7;">dahai516802786</p>-->
+				<p style="color: #F7F7F7;" id="nickname">会员昵称</p>
+			</div>
+
+			<ul class="padding-list">
+				<li>
+					<a id="waite4Payment" href="">
+						<p style="font-size: 15px;",>剩余积分<span style="margin-left: 20px;" id="points">...</span></p>
+					</a>
+				</li>
+			</ul>
+	</body>
+	<script type="text/javascript" src="js/jquery.cookie.js" ></script>
+	<script type="text/javascript" src="js/mui.min.js" ></script>
+	<script>
+		$(document).ready(function(){
+			//通过openid查询会员信息 http://www.yearcontest.com/shop/my/vip-info/123
+			var url = $.cookie("domain") + "shop/my/vip-info/"+$.cookie("openid");
+			$.getJSON(url, function(result){
+				console.log(JSON.stringify(result));
+				if(result.code!=0){
+					mui.alert(result.message);
+					return;
+				}
+				var jsondata = result.jsondata;
+				$("#nickname").html(jsondata.nickname);
+			});
+			//通过openid查询会员积分 http://www.yearcontest.com/shop/my/vip-point/oeIqJuORK4ThFP7siwepco9zR9zA
+			var url2 =  $.cookie("domain") + "shop/my/vip-point/"+$.cookie("openid");
+			$.getJSON(url2,function(result){
+				console.log(JSON.stringify(result));
+				if(result.code!=0){
+					mui.alert(result.message);
+					return;
+				}
+				var jsondata = result.jsondata;
+				$("#points").html(jsondata.points);
+				
+			});
+			
+			
+			
+			
+		});
+	</script>
+
+</html>

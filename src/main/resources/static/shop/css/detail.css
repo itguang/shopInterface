@@ -1,0 +1,383 @@
+/*头部区域*/
+.top-sch-boxtwo {
+    background: none;
+    line-height: 1.1rem;
+    margin: 0;
+    padding: 0;
+    font-size: .5rem;
+    color: #333;
+}
+.top-sch-boxtwo ul li {
+    width: 33.333%;
+    float: left;
+    text-align: center;
+}
+.top-sch-boxtwo ul li.cur a {
+    color: #00cc7d;
+    border-bottom: 3px solid #00cc7d;
+    padding: 0 .2rem;
+}
+.top-sch-boxtwo ul li a {
+    color: #999999;
+    font-size: .45rem;
+    display: inline-block;
+    height: 1.2rem;
+}
+.mui-bar-nav .btn span {
+    display: block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    background-color: #00cc7d;
+    color: #fff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    position: absolute;
+    top: .15rem;
+    right: -.2rem;
+    font-size: .5em;
+}
+
+.detail {
+    width: 100%;
+}
+.banner img {
+    display: block;
+    width: 100%;
+}
+.detail .top {
+    width: 100%;
+    margin-bottom: 2%;
+    background-color: #fff;
+    padding: .4rem .2rem .2rem;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.detail .top .shang {
+    height: 1.2rem;
+    width: 100%;
+}
+
+.detail .top .shang .zuo {
+    width: 79%;
+    padding: 0 2%;
+    color: #414141;
+    font-size: .4rem;
+    line-height: .6rem;
+}
+
+.detail .top .shang .you {
+    width: 20%;
+    border-left: 1px solid #dfdfdf;
+    height: 1.2rem;
+    text-align: center;
+    color: #5b5f62;
+    font-size: .35rem;
+}
+
+.detail .top .shang .you p {
+    margin-top: .2rem;
+}
+
+.detail .top .xia {
+    width: 100%;
+    margin-top: .1rem;
+    height: 1rem;
+    line-height: 1rem;
+}
+
+.detail .top .xia .jifen {
+    width: 79%;
+    padding: 0 2%;
+    color: #f44623;
+    font-size: .4rem;
+}
+
+.detail .top .xia .jifen samp {
+    font-size: .5rem;
+}
+
+.detail .top .xia span {
+    color: #999999;
+    font-size: .4rem;
+    display: block;
+    width: 20%;
+    text-align: center;
+}
+
+.detail .middle {
+    width: 100%;
+    padding: 0 5%;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    background-color: #fff;
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    margin-bottom: 2%;
+}
+
+.detail .middle a {
+    color: #333333;
+    font-size: .5rem;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.detail .middle i {
+    color: #c1c2c4;
+}
+
+.footerone {
+    width: 100%;
+    border-top: 1px solid #e6e6e6;
+    height: 1.3rem;
+    background-color: #fff;
+    position: fixed;
+    bottom: 1.5rem;
+    left: 0;
+}
+
+.footerone .left {
+    width: 30%;
+}
+
+.footerone .left ul li {
+    width: 50%;
+    height: 1.3rem;
+    border-right: 1px solid #e6e6e6;
+    padding-top: .4rem;
+    float: left;
+    text-align: center;
+}
+
+.footerone .left ul li p {
+    font-size: .35rem;
+    color: #333333;
+}
+
+.footerone .left ul li i {
+    color: #666666;
+}
+
+.footerone .right {
+    width: 70%;
+}
+
+.footerone .right .btn {
+    display: block;
+    width: 50%;
+    height: 1.3rem;
+    text-align: center;
+    line-height: 1.3rem;
+    background-color: #ff9100;
+    color: #fff;
+    font-size: .5rem;
+}
+
+.footerone .right .btnone {
+    background-color: #f44623;
+}
+
+
+/*购物车弹出层*/
+
+.am-share {
+    border-radius: 0;
+    bottom: -1rem;
+    left: 0;
+    position: fixed;
+    -webkit-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    transform: translateY(100%);
+    -webkit-transition: -webkit-transform 300ms;
+    transition: transform 300ms;
+    width: 100%;
+    z-index: 1110;
+}
+
+.am-modal-active {
+    transform: translateY(0px);
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0)
+}
+
+.am-modal-out {
+    z-index: 1109;
+    -webkit-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    transform: translateY(100%)
+}
+
+.am-share-footer .share_btn {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    width: .8rem;
+    height: .8rem;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background-color 300ms ease-out 0s, border-color 300ms ease-out 0s;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-family: "微软雅黑";
+}
+
+.am-share-footer .share_btn img {
+    width: 100%;
+}
+
+.am-share-sns {
+    background-color: #fff;
+    padding: 0 5% 5%;
+    height: auto;
+    zoom: 1;
+}
+
+.sharebg {
+    background-color: rgba(0, 0, 0, 0.6);
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1100;
+    display: none;
+}
+
+.sharebg-active {
+    opacity: 1;
+    display: block;
+}
+
+.am-share .bottom {
+    padding: 0;
+}
+
+.sdetail {
+    width: 100%;
+}
+
+.sdetail .top {
+    width: 100%;
+    padding-top: .4rem;
+}
+
+.sdetail .top .tu {
+    width: 3rem;
+    height: 3rem;
+    margin-top: -1rem;
+    font-size: 0;
+    border: 1px solid #dfdfdf;
+    text-align: center;
+}
+
+.sdetail .top .tu span {
+    display: inline-block;
+    height: 100%;
+    line-height: 0;
+    vertical-align: middle;
+}
+
+.sdetail .top .tu img {
+    vertical-align: middle;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.sdetail .top .you {
+    width: 50%;
+    text-align: left;
+    margin-left: 3%;
+}
+
+.sdetail .top .you .tit {
+    width: 100%;
+    font-size: .5rem;
+    color: #333333;
+}
+
+.sdetail .top .you span {
+    font-size: .5rem;
+    color: #f44623;
+    display: block;
+    margin-top: .2rem;
+}
+
+.sdetail .middle {
+    width: 100%;
+    padding: .5rem 0 .3rem;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.sdetail .middle p,
+.sdetail p {
+    font-size: .5rem;
+    color: #001924;
+}
+
+.sdetail .middle .xia {
+    width: 100%;
+    margin-top: .3rem;
+}
+
+.sdetail .middle .xia ul li {
+    height: 1.3rem;
+    line-height: 1.3rem;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    width: 25%;
+    text-align: center;
+    float: left;
+    background-color: #f5f5f5;
+    color: #333333;
+    font-size: .45rem;
+}
+
+.sdetail .middle .xia ul li.cur {
+    background-color: #9dc1e5;
+    color: #fff;
+}
+
+.sdetail .bottom {
+    width: 100%;
+    margin-top: 5%;
+}
+
+.sdetail .bottom .you {
+    width: 3rem;
+    height: 1rem;
+}
+
+.sdetail .bottom .you ul li {
+    float: left;
+    height: 1rem;
+    line-height: .8rem;
+    width: 1rem;
+    text-align: center;
+}
+
+.sdetail .bottom .you ul li img {
+    width: 100%;
+}
+
+.shop-btn {
+    width: 100%;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    background-color: #9dc1e5;
+    color: #fff;
+    font-size: .5rem;
+}
+.db {
+    display: block;
+}

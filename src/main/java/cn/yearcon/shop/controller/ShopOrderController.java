@@ -212,6 +212,26 @@ public class ShopOrderController {
 
     }
 
+    @RequestMapping(value = "order/getOrderByOrderId/{oederId}")
+    public ShopResult findOrderById(@PathVariable("oederId") String oederId){
+        ShopResult result = null;
+        try {
+            ShopOrder shopOrder = shopOrderService.findOederById(oederId);
+            if(shopOrder!=null){
+                result =new ShopResult(shopOrder);
+            }else {
+                result = new ShopResult(0,"对不起,订单信息未找到!");
+            }
+
+        } catch (Exception e) {
+            result = new ShopResult(0,"服务器忙");
+            e.printStackTrace();
+        }
+
+
+        return result;
+    }
+
 
     @RequestMapping(value = "order/getorder/{openid}")
     public ShopResult findOrderListPaid(@PathVariable("openid") String openid) {

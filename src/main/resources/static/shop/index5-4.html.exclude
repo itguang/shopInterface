@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/html"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta charset="UTF-8">
+    <title>投稿</title>
+    <meta name="description" content="">
+	 
+    <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+    
+                
+    </head>
+<body>
+  
+<script type="text/javascript" src="js/exif.js"></script>
+    <script type="text/javascript" src="js/binaryajax.js"></script><script type="text/vbscript">
+Function IEBinary_getByteAt(strBinary, iOffset)
+	IEBinary_getByteAt = AscB(MidB(strBinary, iOffset + 1, 1))
+End Function
+Function IEBinary_getBytesAt(strBinary, iOffset, iLength)
+  Dim aBytes()
+  ReDim aBytes(iLength - 1)
+  For i = 0 To iLength - 1
+   aBytes(i) = IEBinary_getByteAt(strBinary, iOffset + i)
+  Next
+  IEBinary_getBytesAt = aBytes
+End Function
+Function IEBinary_getLength(strBinary)
+	IEBinary_getLength = LenB(strBinary)
+End Function
+</script>
+
+    <script type="text/vbscript">
+Function IEBinary_getByteAt(strBinary, iOffset)
+	IEBinary_getByteAt = AscB(MidB(strBinary, iOffset + 1, 1))
+End Function
+Function IEBinary_getBytesAt(strBinary, iOffset, iLength)
+  Dim aBytes()
+  ReDim aBytes(iLength - 1)
+  For i = 0 To iLength - 1
+   aBytes(i) = IEBinary_getByteAt(strBinary, iOffset + i)
+  Next
+  IEBinary_getBytesAt = aBytes
+End Function
+Function IEBinary_getLength(strBinary)
+	IEBinary_getLength = LenB(strBinary)
+End Function
+</script>
+
+    <script type="text/vbscript">
+    Function IEBinary_getByteAt(strBinary, iOffset)
+        IEBinary_getByteAt = AscB(MidB(strBinary, iOffset + 1, 1))
+    End Function
+    Function IEBinary_getBytesAt(strBinary, iOffset, iLength)
+      Dim aBytes()
+      ReDim aBytes(iLength - 1)
+      For i = 0 To iLength - 1
+       aBytes(i) = IEBinary_getByteAt(strBinary, iOffset + i)
+      Next
+      IEBinary_getBytesAt = aBytes
+    End Function
+    Function IEBinary_getLength(strBinary)
+        IEBinary_getLength = LenB(strBinary)
+    End Function
+    </script>
+<script type="text/javascript" src="js/localResizeIMG2.js"></script>
+<script type="text/javascript" src="js/mobileBUGFix1.mini.js"></script>
+
+<div style="height:10px;"></div>
+		
+	<div class="hot-tj-title">
+		<p>投稿</p>
+	</div>
+	
+	<div class="creat-box">
+		<ul>
+			<li>
+				<div class="creat-box-l">姓名：</div>
+				<div class="creat-box-r"><input type="text" name="" value=""  placeholder="请填写真实姓名"></div>
+			</li>
+			<li>
+				<div class="creat-box-l">手机号：</div>
+				<div class="creat-box-r"><input type="text" name="" value=""  placeholder="请填写正确的手机号码"></div>
+			</li>
+			<li>
+				<div class="creat-box-l">上传：</div>
+				<div class="creat-box-r">
+					<dl class="upload clearfix">
+						<dd class="upload_area clearfix">
+							<div id="imglist" class="post_imglist"></div>
+							<div class="upload_btn">
+								<input type="file" id="upload_image" value="图片上传" accept="image/jpeg,image/gif,image/png" capture="camera" name="pic">
+							</div>
+						</dd>
+					</dl>
+				</div>
+			</li>
+			<li>
+				<div class="creat-box-l">作品介绍：</div>
+				<div class="creat-box-r"><textarea class="textarea" placeholder="请填写作品介绍" name="intro" id="intro"></textarea></div>
+			</li>
+		</ul>
+		
+		<div class="clear"></div>
+		
+		<div class="creat-btn">
+			<button>确认提交</button>
+		</div>
+		
+		<div class="sMing">
+			<p class="sMing-title">友情提醒</p>
+			<p>
+			请务必填写您的真实有效的信息，<br>
+			以便我们与您联系活动事宜。
+			</p>
+		</div>
+		
+	</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+    (function () {
+        var viewImg = $("#imglist");
+        var imgurl = '';
+        var imgcount = 0;
+        $('#upload_image').localResizeIMG({
+            width: 800,
+            quality: 0.8,
+            success: function (result) {
+                var status = true;
+                if (result.height > 1600) {
+                    status = false;
+                    alert("照片最大高度不超过1600像素");
+                }
+                if (viewImg.find("li").length > 0) {
+                    status = false;
+                    alert("最多上传1张照片");
+                }
+                if (status) {
+                    viewImg.append('<li><span class="pic_time"><span class="p_img"></span><em>50%</em></span></li>');
+                    viewImg.find("li:last-child").html('<span class="del"></span><img class="wh60" src="' + result.base64 + '"/><input type="hidden" id="file'
+                    + imgcount
+                    + '" name="fileup[]" value="'
+                    + result.clearBase64 + '">');
+
+                    $(".del").on("click",function(){
+                        $(this).parent('li').remove();
+                        $("#upload_image").show();
+                    });
+                    imgcount++;
+                }
+            }
+        });
+    })();
+</script>
+
+</body></html>

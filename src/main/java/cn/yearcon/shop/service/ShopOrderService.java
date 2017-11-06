@@ -58,6 +58,7 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
      * @return 订单id
      */
     public String saveOrder(OrderBean orderBean) {
+        System.out.println("订单信息orderBean="+orderBean);
         String addressId = orderBean.getAddressId();
         String productId = orderBean.getProductId();
         String productSpecificationId = orderBean.getProductSpecificationId();
@@ -105,7 +106,7 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
         int needIntegration = shopProductSpecificationService.get(productSpecificationId).getNeedIntegration();
         order.setAmountPayable(productAmount*needIntegration);
         //实付积分
-        order.setAmountPaid(productAmount*shopProduct.getPoints());
+        order.setAmountPaid(productAmount*needIntegration);
         //发票抬头
         order.setInvoiceTitle(invoiceTitle);
 
@@ -309,5 +310,14 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
     }
 
 
+    /**
+     * 根据订单Id查找订单信息
+     * @param oederId
+     */
+    public ShopOrder findOederById(String oederId) {
 
+      ShopOrder shopOrder =   shopOrderMapper.get(oederId);
+      return shopOrder;
+
+    }
 }

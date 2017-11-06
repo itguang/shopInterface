@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" href="css/mescroll.min.css">
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-webkit-tap-highlight-color: transparent;
+			}
+			
+			body {
+				background-color: white
+			}
+			
+			ul {
+				list-style-type: none
+			}
+			
+			a {
+				text-decoration: none;
+				color: #18B4FE;
+			}
+			
+			
+			
+			
+			
+			
+		
+			
+			
+			
+			
+			
+			.mescroll {
+				position: fixed;
+				top: 5px;
+				bottom: 0;
+				height: auto;
+			}
+			/*展示上拉加载的数据列表*/
+			
+			.data-list li {
+				position: relative;
+				padding: 10px 8px 10px 120px;
+				border-bottom: 1px solid #eee;
+			}
+			
+			.data-list .pd-img {
+				position: absolute;
+				left: 18px;
+				top: 18px;
+				width: 80px;
+				height: 80px;
+			}
+			
+			.data-list .pd-name {
+				font-size: 16px;
+				line-height: 20px;
+				height: 40px;
+				overflow: hidden;
+			}
+			
+			.data-list .pd-price {
+				margin-top: 8px;
+				color: red;
+			}
+			
+			.data-list .pd-sold {
+				font-size: 12px;
+				margin-top: 8px;
+				color: gray;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!--滑动区域-->
+		<div id="mescroll" class="mescroll">
+
+			<!--展示上拉加载的数据列表-->
+			<ul id="" class="data-list model-parent">
+				<li id="model">
+					<a>
+					<img class="pd-img" src="img/pd1.jpg" />
+					<p class="pd-name">商品标题商品标题商品标题商品标题商品标题商品</p>
+					<p class="pd-price">200.00 元</p>
+					<p class="pd-sold">已售50件</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+
+	<script src="js/mescroll.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--mescroll本身不依赖jq,这里为了模拟发送ajax请求-->
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+	
+	var mescroll;
+		$(function() {
+//			$("#model").hide();
+			
+			//创建MeScroll对象,内部已默认开启下拉刷新,自动执行up.callback,重置列表数据;
+			 mescroll = new MeScroll("mescroll", {
+				up: {
+					use:false,
+					//clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
+					callback: getListData, //上拉回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
+					toTop: { //配置回到顶部按钮
+						src: "img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
+						//offset : 1000
+					}
+				}
+			});
+
+			/*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+			function getListData() {
+
+				console.log("上拉刷新...")
+				//联网加载数据
+				
+				var curPage = 1;
+
+				getData('123', curPage++, 3);
+			}
+
+		});
+
+		function getData(categoryId, curPage, pageSize) {
+			var url = "http://www.yearcontest.com/shop/category/page";
+			var data = {
+				id: categoryId,
+				curPage: curPage,
+				pageSize: pageSize
+
+			};
+			$.getJSON(url, data, function(result) {
+				if(result.status != 1) {
+					mui.alert(result.msg);
+					//联网失败的回调,隐藏下拉刷新和上拉加载的状态;
+	                mescroll.endErr();
+					return;
+				}
+				
+				
+
+				console.log(JSON.stringify(result.data));
+				mescroll.endSuccess(result.data.length);
+				addData(result.data);
+					console.log("拉呀拉呀拉呀拉呀拉呀拉呀.......");
+
+			});
+
+		}
+
+		function addData(list) {
+			
+			console.log("数据量:=" + list.length);
+
+			for(var i in list) {
+				var $model = $("#model").clone().show();
+				var p = list[i];
+				$model.find(".pd-name").html(p.name);
+				$model.find(".pd-price").html(p.points + "积分");
+				$model.find("a").attr("href", "detail.html?productId=" + p.id);
+				$model.find("img").attr("src", p.pictureUrlDefault);
+
+				$model.appendTo(".model-parent");
+
+			}
+
+		}
+
+		//获取url中的参数
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if(r != null) return unescape(r[2]);
+			return null; //返回参数值
+		}
+	</script>
+
+</html>

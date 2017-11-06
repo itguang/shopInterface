@@ -1,0 +1,91 @@
+.report-header p {
+    width: 100%;
+    text-align: center;
+    float: right;
+    color: #404040;
+    font-size: .5rem;
+}
+.sorder {
+    width: 100%;
+}
+
+.sorder .warning {
+    width: 100%;
+    padding: 3% 5%;
+    font-size: .45rem;
+    color: #bcbcbc;
+    background-color: #fff;
+    border-bottom: 1px solid #dcdad3;
+    text-align: left;
+    /*overflow: hidden; text-overflow: ellipsis; -webkit-text-overflow: ellipsis; white-space: nowrap;*/
+}
+
+.sorder .odernum {
+    width: 100%;
+    margin-top: 5%;
+    background-color: #fff;
+    border-top: 1px solid #dcdad3;
+    border-bottom: 1px solid #dcdad3;
+}
+
+.sorder .odernum ul li {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #333333;
+    font-size: .5rem;
+    padding: 3% 5%;
+    border-bottom: 1px solid #dcdad3;
+}
+
+.sorder .odernum ul li:last-child {
+    border-bottom: none;
+}
+
+.sorder .odernum ul li span {
+    color: #d24239;
+    font-size: .57rem;
+}
+
+.pay-method {
+    width: 100%;
+    background-color: #fff;
+    margin-top: 5%;
+    border-top: 1px solid #dcdad3;
+}
+
+.pay-method ul li {
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 3% 5%;
+    border-bottom: 1px solid #dcdad3;
+}
+
+.pay-method ul li:last-child {
+    border-bottom: none;
+}
+
+.pay-method ul li {
+    color: #333333;
+    margin-top: .3rem
+}
+
+.pay-method label {
+	font-size: .5rem;
+	line-height: 1rem
+}
+.pay-method input[type="password"] {
+	height: .7rem;
+    padding: 0;
+    width: 5rem;
+}
+.address-add {
+    display: block;
+    width: 96%;
+    line-height: 1rem;
+    margin: 5% 2%;
+    font-size: .5rem;
+    color: #fff;
+    text-align: center;
+    background-color: #25cb83;
+}

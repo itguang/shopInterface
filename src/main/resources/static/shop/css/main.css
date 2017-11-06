@@ -1,0 +1,6 @@
+
+
+
+#wrapper {position:absolute;top:0px; bottom:48px;left:0;width:100%}
+#scroller li {padding:0 10px;height:60px;line-height:60px;background:#ecf6ff;margin-top:10px}
+#pullDown, #pullUp {padding:0 10px;height:30px;line-height:30px;color:#888;text-align:center}

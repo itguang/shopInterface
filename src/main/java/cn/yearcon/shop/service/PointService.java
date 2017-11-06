@@ -2,6 +2,7 @@ package cn.yearcon.shop.service;
 
 import cn.yearcon.shop.utils.HttpClientUtil2;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
@@ -23,7 +24,9 @@ public class PointService {
 
     String appkey = "2000005";
     String appsecret = "3d9aa8c0707aa7cb16050beabe2b89ee";
-    String BASE_URL = "http://192.168.1.216:8080/rest";
+
+    @Value("${shuyu.BASE_URL}")
+    String BASE_URL ;
 
 
     /**

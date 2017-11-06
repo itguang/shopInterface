@@ -64,8 +64,8 @@ public class CacheConfig extends CachingConfigurerSupport {
 
         //设置value的过期时间
         Map<String,Long> map=new HashMap();
-        map.put("category",10*60L);//60秒
-        map.put("product",10*60L);//60秒
+        map.put("category",10*60L);//10分钟
+        map.put("product",10*60L);//10分钟
 
         redisCacheManager.setExpires(map);
 
