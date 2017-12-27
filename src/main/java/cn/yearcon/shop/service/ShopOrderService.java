@@ -4,6 +4,8 @@ import cn.yearcon.shop.entity.ShopCustomer;
 import cn.yearcon.shop.entity.ShopOrder;
 import cn.yearcon.shop.entity.ShopProduct;
 import cn.yearcon.shop.entity.ShopShippingAddress;
+import cn.yearcon.shop.enums.ResultEnum;
+import cn.yearcon.shop.exception.ShopException;
 import cn.yearcon.shop.mapper.ShopOrderMapper;
 import cn.yearcon.shop.pojo.OrderBean;
 import cn.yearcon.shop.service.common.CrudService;
@@ -13,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Id;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -151,7 +152,8 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
             //通过 orderId 获取订单信息
             ShopOrder shopOrder = shopOrderMapper.get(orderId);
             if (shopOrder==null){
-                return 5;//该订单不存在
+                throw new ShopException(ResultEnum.ORDER_NOT_EXIT);
+               // return 5;//该订单不存在
 
             }
             String customerId = shopOrder.getCustomerId();
@@ -193,11 +195,13 @@ public class ShopOrderService extends CrudService<ShopOrderMapper,ShopOrder> {
                     }
                 }else {
                     //积分不足,返回状态 2,供controller调用
-                    return 2;
+                    throw new ShopException(ResultEnum.POINT_NOT_ENOUGH);
+//                    return 2;
                 }
             }else {
                 //支付密码错误
-                return 3;
+                throw new ShopException(ResultEnum.PAY_PASSWORD_ERROR);
+//                return 3;
             }
 
         }

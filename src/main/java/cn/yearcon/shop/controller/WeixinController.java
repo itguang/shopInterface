@@ -1,7 +1,6 @@
 package cn.yearcon.shop.controller;
 
 import cn.yearcon.shop.entity.ShopConfig;
-import cn.yearcon.shop.entity.ShopCustomer;
 import cn.yearcon.shop.service.ShopConfigService;
 import cn.yearcon.shop.service.ShopCustomerService;
 import cn.yearcon.shop.utils.HttpClientUtil;
@@ -37,9 +36,7 @@ public class WeixinController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    //@Value("${weixin.appid}")
     String appid;
-    //@Value("${weixin.secret}")
     String secret;
     @Value("${weixin.grant_type}")
     String grant_type;
